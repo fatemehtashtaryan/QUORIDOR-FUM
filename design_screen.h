@@ -69,25 +69,5 @@ void printwon(char name[])
     }
 }
 
-void message(int type){
-    int len;
-    const char turn_message = " is your Turn!";
-    switch (turn){
-             case 1:
-                 strcpy(message_board[0], name_player_1) ;
-                 len=strlen(name_player_1) ;
-                 strcat(message_board[0], turn_message) ;
-             case 2:
-                 strcpy(message_board[0], name_player_2) ;
-                 len=strlen(name_player_2) ;
-                 strcat(message_board[0], turn_message) ;
-         }
-    message_board[1][100]="Select your action :  1 == MOVE / 2 == STICK";
-
-
-
-
-             }
-
 
 
