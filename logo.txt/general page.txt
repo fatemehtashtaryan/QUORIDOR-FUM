@@ -1,0 +1,185 @@
+#include <stdio.h>
+int board[120][120];
+int TotalRows, TotalColumn;
+
+int boardgame(int TotalRows,int TotalColumn){
+	int  Row, Column;
+	int  existence = 0; //existence checks if we have reached the end of the row.
+	int Player_House = 3, SpaceBetween_Row=4, SpaceBetween_Column_oddRow=6, SpaceBetween_Column_evenRow=6, sw=1;
+	///////////////////////////////////////////////////////////////////////////////////// //Building board
+	for(Row = 1; Row < TotalRows-1 ; Row++){
+        for(Column = 1; Column < TotalColumn -1 ; Column++){
+            if(Row % 2 == 1){
+               //Checking the space between houses in Column for odd row .
+               if(Column == SpaceBetween_Column_oddRow){
+                  SpaceBetween_Column_oddRow += 8; //THe space between the Column is 5.
+                  existence++;
+                  if(existence < 2 ){ // if existence < size_board we need space after house
+                     board[Row][Column] = 0; //if the coordinate is related to the space between the Column, put 2 space.
+                     board[Row][Column+1] = 0;
+                     board[Row][Column+2] = 0;
+               	    Column+=2;
+                     sw = 0;
+                  }
+               }
+               if((Row+1)%4==0){
+	               if(Column == SpaceBetween_Column_oddRow-5 ){
+	               		board[Row][Column] = 5;  // Building the down left corner of the houses
+	               		sw=0;
+				   }
+				   if(Column == SpaceBetween_Column_oddRow-1 ){
+	               		board[Row][Column] = 6;  // Building the down right corner of the houses
+	               		sw=0;
+				   }
+			     }else{
+			     	 if(Column == SpaceBetween_Column_oddRow-5 ){
+	               		board[Row][Column] = 3;  // Building the upper left corner of the houses
+	               		sw=0;
+				   }
+				   if(Column == SpaceBetween_Column_oddRow-1 ){
+	               		board[Row][Column] = 4;  // Building the upper right corner of the houses
+	               		sw=0;
+				   }
+				 }
+
+               if(sw == 1 ) board[Row][Column] = 1; //Building walls of houses
+               sw = 1;
+
+            }
+            else{
+
+            	//Checking the space between houses in rows .
+                if(Row == SpaceBetween_Row ){
+                   board[Row][Column] = 0;  //if the coordinate is related to the space between the rows, put space.
+                   if(Column == TotalColumn-2) SpaceBetween_Row += 4; //THe space between the rows is 4.
+                 }
+                else{
+                	//checking player's house.
+                	if(Column == Player_House-1){
+                		  board[Row][Column] = 0;
+                		  sw=0;
+					}
+                    if(Column == Player_House ){
+                       Player_House += 8; //The distance between player houses is 5 .
+
+                       board[Row][Column] = 0; //if the coordinate is related to the player's house , put space.
+
+                       sw = 0;
+                    }
+                    if(Column == Player_House-7){
+                		  board[Row][Column] = 0;
+                		  sw=0;
+					}
+                    //Checking the space between houses in Column for even row .
+                    if(Column == SpaceBetween_Column_evenRow ){
+
+	                       board[Row][Column] = 0; //if the coordinate is related to the space between the Column for even row, put 2 space.
+	                       board[Row][Column+1] = 0;
+	                       board[Row][Column+2] = 0;
+
+                       Column+=2;
+                       SpaceBetween_Column_evenRow += 8; //THe space between the Column is 5.
+                    }
+                    else{
+                    	//Building walls of houses.
+                        if(sw == 1 ){
+                        	board[Row][Column] = 2;
+						}
+
+                        sw = 1;
+                    }
+
+                }
+           }
+        }
+        Player_House = 3;
+        SpaceBetween_Column_oddRow = 6;
+        existence = 0;
+        SpaceBetween_Column_evenRow = 6;
+    }
+
+   	/////////////////////////////////////////////////////////////// making a frame around the board
+	for(Column = 0; Column <= TotalColumn -3 ; Column++){
+		board[0][Column]=8;  // for row=0 && row=last
+		board[TotalRows-1][Column]=8;
+	}
+	for(Row = 1; Row <= TotalRows-2 ; Row++){
+		board[Row][0]=7; //for Column=1 && Column=last
+		board[Row][TotalColumn-1]=7;
+	}
+	///////////////////////////////////////////////////////////////////
+    
+}
+
+
+int logo(int TotalRows,int TotalColumn){
+     int  Row, Column,sw=1 ,i;
+	 for(Row = 0; Row <= TotalRows ; Row++){
+	    for(Column = 0; Column <= TotalColumn ; Column++){
+	    	//////////print 4 corners of the frame
+			if(Row==0 && Column==0){
+					for(i=1 ;i <=4*(12) ;i++){
+								printf(" ");
+							}
+					printf("%c",218);
+			}
+			if(Row==0 && Column==TotalColumn-2){
+					printf("%c",191);
+			}
+			if(Row==TotalRows-1 && Column==TotalColumn-2){
+					printf("%c",217);
+			}
+			if(Row==TotalRows-1 && Column==0){
+					for( i=1 ;i<=4*(12);i++){
+								printf(" ");
+							}
+					printf("%c",192);
+			}
+
+			////////////// print houses
+	        if(board[Row][Column] == 0 || Row==TotalRows || Column==TotalColumn ){
+	        	printf(" ");
+			}
+	        else if(board[Row][Column] == 1  && Row!=TotalRows && Column!=TotalColumn ) {
+                printf("%c",205);
+			}
+			else if(board[Row][Column] ==2  && Row!=TotalRows && Column!=TotalColumn) {
+	        	printf("%c",215);
+			}
+			else if(board[Row][Column] ==3  && Row!=TotalRows && Column!=TotalColumn) {
+	        	printf("%c",201);
+			}
+			else if(board[Row][Column] ==4  && Row!=TotalRows && Column!=TotalColumn) {
+	        	printf("%c",187);
+			}
+			else if(board[Row][Column] ==5  && Row!=TotalRows && Column!=TotalColumn) {
+	        	printf("%c",200);
+			}
+			else if(board[Row][Column] ==6  && Row!=TotalRows && Column!=TotalColumn ) {
+	        	printf("%c",188);
+			}
+			////////// print main frame
+			else if(board[Row][Column]==7 && Column!=TotalColumn && Row!=TotalRows )	{
+						if(Column==0){
+							for( i=1 ;i<=4*(12);i++){
+								printf(" ");
+							}
+
+						}
+						printf("%c",179);
+			}
+		    else if(board[Row][Column]==8 && Column!=TotalColumn && Row!=TotalRows )	{
+
+                            printf("%c",196);
+
+
+		    }
+	    }
+	     printf("\n");
+	 }
+}
+main(){
+	boardgame(9,15)	;
+	logo(9,15);
+}
+
