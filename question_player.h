@@ -3,9 +3,11 @@
 
 #include "subcodes.h"
 
-void boardplayer1()
+//This file contains the tables that contain the questions needed at the beginning of the game
+
+void question_boardplayer1()
 {
-    char   beatnumber1;
+    char  beatnumber1, verticalstick, horizontalstick;
      int counterrow, countercolumn, sw = 0;
      char tens_digit_column1, units_digit_column1, tens_digit_size_board, units_digit_size_board;
      //start of drawing board inforaition
@@ -79,23 +81,36 @@ void boardplayer1()
             printf("%c%c", tens_digit_column1, units_digit_column1);
           }
      }
-     tens_digit_column1 -= 48;
-     units_digit_column1 -= 48;
+     tens_digit_column1 -= '0';
+     units_digit_column1 -= '0';
      column1 = tens_digit_column1*10+units_digit_column1 ;
      //End of checking the player answer for column
      getch();
      gotoxy(5,2);
      printf("Enter your number of vertical sticks: ");
-     scanf("%d", &verticalsticks1);
+     verticalstick=getch();
+     while(verticalstick>'9' || verticalstick<'1'){//check the number of verticalstick, It should not be more than 9
+        beep(500, 100);
+        verticalstick=getch();
+     }
+     verticalsticks1=verticalstick-'0';
+     printf("%d", verticalsticks1);
+     getch();
      gotoxy(6,2);
      printf("Enter your number of horizontal sticks: ");
-     scanf("%d", &horizontalsticks1);
+     horizontalstick=getch();
+     while(horizontalstick>'9' || horizontalstick<'1'){//check the number of horizontalstick, It should not be more than 9
+        beep(500, 100);
+        horizontalstick=getch();
+     }
+     horizontalsticks1=horizontalstick-'0';
+     printf("%d", horizontalsticks1);
      //End of asking for information
 }
 
-void boardplayer2(){
+void question_boardplayer2(){
      int counterrow, countercolumn, sw=0;
-     char   beatnumber2;
+     char   beatnumber2, verticalstick, horizontalstick;
      char units_digit_column2, tens_digit_column2, units_digit_size_board, tens_digit_size_board;
      //start of drawing board inforaition
      gotoxy(9,0);
@@ -175,10 +190,23 @@ void boardplayer2(){
      getch();
      gotoxy(14,2);
      printf("Enter your number of vertical sticks: ");
-     scanf("%d", &verticalsticks2);
+     verticalstick=getch();
+     while(verticalstick>'9'||verticalstick<'1'){//check the number of verticalstick, It should not be more than 9
+        beep(500, 100);
+        verticalstick=getch();
+     }
+     verticalsticks2=verticalstick-'0';
+     printf("%d", verticalsticks2);
+     getch();
      gotoxy(15,2);
      printf("Enter your number of horizontal sticks: ");
-     scanf("%d", &horizontalsticks2);
+     horizontalstick=getch();
+     while(horizontalstick>'9' || horizontalstick<'1'){//check the number of horizontalstick, It should not be more than 9
+        beep(500, 100);
+        horizontalstick=getch();
+     }
+     horizontalsticks2=horizontalstick-'0';
+     printf("%d", horizontalsticks2);
      //End of asking for information
 }
 #endif // question_player
