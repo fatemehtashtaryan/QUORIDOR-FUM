@@ -17,7 +17,7 @@ int row1, column1, verticalsticks1, horizontalsticks1 ;
 int row2=2, column2, verticalsticks2, horizontalsticks2 ;
 int board[120][120] ;
 int size_board ;
-int beat1_1=35, beat1_2=42, beat2_1=36, beat2_2=126 ;
+int beat1_1=35, beat1_2=42, beat2_1=36, beat2_2=63 ;
 int colorscreen = 7 ;
 int d=205 ;//horizontal line
 int b=215 ;//vertical line
@@ -29,7 +29,7 @@ int sticks = 178 ;
 int DFplayer;
 int lastrow=0; //for DFS
 
-void setTextColor (int textColor, int backColor)
+void setTextColor (int textColor, int backColor)//to change the color
 {
      HANDLE consoleHandle = GetStdHandle (STD_OUTPUT_HANDLE) ;
      int colorAttribute = backColor << 4 | textColor ;
@@ -46,7 +46,7 @@ void gotoxy (int x, int y)
     SetConsoleCursorPosition (consoleHandle, cursorCoord) ;
 }
 
-void beep (int frequency, int duration)
+void beep (int frequency, int duration)//for voicing
  {
     Beep (frequency, duration) ;
 }
@@ -73,10 +73,12 @@ struct coordinates{
     int row;
     int column;
 };
+
 struct visited{
     struct coordinates location[maxi] ;
     int coordinatesNo;
 };
+
 struct visited house;
 
 #endif // subcodes
