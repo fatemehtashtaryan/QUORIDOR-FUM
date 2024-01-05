@@ -1,41 +1,44 @@
 #include "main_board.h"
 #include "subcodes.h"
-
+//this file is about print main board and colores around houses
 
 void printboardgame(TotalRows, TotalColumn){
+
      board[row1-1][column1-2]=30;
      board[row1-1][column1+2]=40;
      board[row1+1][column1-2]=50;
      board[row1+1][column1+2]=60;
-     board[row1][column1-2]=80;
-     board[row1][column1+2]=80;
-     board[row1+1][column1]=70;
-     board[row1-1][column1]=70;
-     board[row1-1][column1-1]=70;
-     board[row1-1][column1+1]=70;
-     board[row1+1][column1-1]=70;
-     board[row1+1][column1+1]=70;
+     board[row1][column1-2]=62;
+     board[row1][column1+2]=62;
+     board[row1+1][column1]=63;
+     board[row1-1][column1]=63;
+     board[row1-1][column1-1]=63;
+     board[row1-1][column1+1]=63;
+     board[row1+1][column1-1]=63;
+     board[row1+1][column1+1]=63;
      board[row2-1][column2-2]=33;
      board[row2-1][column2+2]=44;
      board[row2+1][column2-2]=55;
-     board[row2+1][column2+2]=66;
-     board[row2][column2-2]=88;
-     board[row2][column2+2]=88;
-     board[row2+1][column2]=77;
-     board[row2-1][column2]=77;
-     board[row2-1][column2+1]=77;
-     board[row2-1][column2-1]=77;
-     board[row2+1][column2-1]=77;
-     board[row2+1][column2+1]=77;
-     if(board[row1-2][column1] != 100 && board[row1-2][column1] != 8 && board[row1-4][column1] != 300 && turn == 1) board[row1-4][column1] =400;
-     if(board[row1+2][column1] != 100 && board[row1+2][column1] != 8 && board[row1+4][column1] != 300 && turn == 1) board[row1+4][column1] =400;
-     if(board[row1][column1+4] != 100 && board[row1][column1+3] != 7 && board[row1][column1+8] != 300 && turn == 1) board[row1][column1+8] =400;
-     if(board[row1][column1-4] != 100 && board[row1][column1-3] != 7 && board[row1][column1-8] != 300 && turn == 1) board[row1][column1-8] =400;
-     if(board[row2][column2-4] != 100 && board[row2][column2-3] != 7 && board[row2][column2-8] != 200 && turn == 2) board[row2][column2-8] =400;
-     if(board[row2][column2+4] != 100 && board[row2][column2+3] != 7 && board[row2][column2+8] != 200 && turn == 2) board[row2][column2+8] =400;
-     if(board[row2+2][column2] != 100 && board[row2+2][column2] != 8 && board[row2+4][column2] != 200 && turn == 2) board[row2+4][column2] =400;
-     if(board[row2-2][column2] != 100 && board[row2-2][column2] != 8 && board[row2-4][column2] != 200 && turn == 2) board[row2-4][column2] =400;
-	 int  Row, Column ,name_lines=65,situation ,sw=1 ,i;
+     board[row2+1][column2+2]=59;
+     board[row2][column2-2]=61;
+     board[row2][column2+2]=61;
+     board[row2+1][column2]=64;
+     board[row2-1][column2]=64;
+     board[row2-1][column2+1]=64;
+     board[row2-1][column2-1]=64;
+     board[row2+1][column2-1]=64;
+     board[row2+1][column2+1]=64;
+     //+
+     if(board[row1-2][column1] != 1000 && board[row1-2][column1] != 2000 && board[row1-2][column1] != 8 && board[row1-4][column1] != 300 && turn == 1) board[row1-4][column1] =400;
+     if(board[row1+2][column1] != 1000 && board[row1+2][column1] != 2000 && board[row1+2][column1] != 8 && board[row1+4][column1] != 300 && turn == 1) board[row1+4][column1] =400;
+     if(board[row1][column1+4] != 1000 && board[row1][column1+4] != 2000 && board[row1][column1+3] != 7 && board[row1][column1+8] != 300 && turn == 1) board[row1][column1+8] =400;
+     if(board[row1][column1-4] != 1000 && board[row1][column1-4] != 2000 && board[row1][column1-3] != 7 && board[row1][column1-8] != 300 && turn == 1) board[row1][column1-8] =400;
+     if(board[row2][column2-4] != 1000 && board[row2][column2-4] != 2000 && board[row2][column2-3] != 7 && board[row2][column2-8] != 200 && turn == 2) board[row2][column2-8] =400;
+     if(board[row2][column2+4] != 1000 && board[row2][column2+4] != 2000 && board[row2][column2+3] != 7 && board[row2][column2+8] != 200 && turn == 2) board[row2][column2+8] =400;
+     if(board[row2+2][column2] != 1000 && board[row2+2][column2] != 2000 && board[row2+2][column2] != 8 && board[row2+4][column2] != 200 && turn == 2) board[row2+4][column2] =400;
+     if(board[row2-2][column2] != 1000 && board[row2-2][column2] != 2000 && board[row2-2][column2] != 8 && board[row2-4][column2] != 200 && turn == 2) board[row2-4][column2] =400;
+
+	 int  Row, Column, sw=1 ,i;
 	 for(Row = 0; Row <= TotalRows ; Row++){
 	    for(Column = 0; Column <= TotalColumn; Column++){
 	    	//////////print 4 corners of the frame
@@ -123,58 +126,59 @@ void printboardgame(TotalRows, TotalColumn){
 						if(board[Row][Column]>64){
 
 								printf("%c",board[Row][Column]);
-						}else{
-
+						}
+						else
+						{
 								printf("%d",board[Row][Column]);
 								}
-					}else{
+					}
+					else{
 						printf(" ");
 					}
 				}
-	      /////////////
-	        if(turn==1) setTextColor(9
-                                  , colorscreen);
-	        else setTextColor(13, colorscreen);
-	        if( board[Row][Column] == 100) printf("%c",178);
+	      /////////////print sticks
+	        if(board[Row][Column] == 1000)
+            {
+                setTextColor(13, colorscreen);
+                printf("%c",178);}
+            if( board[Row][Column] == 2000)
+            {
+                setTextColor(9, colorscreen);
+                printf("%c",178);
+            }
+            ////////////
 	        setTextColor(0, colorscreen);
 		 	if(board[Row][Column] == 200) printf("%c", beat1);
             if(board[Row][Column] == 300) printf("%c", beat2);
+            //player 1 color around house
             setTextColor(13,colorscreen);
             if(board[Row][Column] == 30) printf("%c", 201);
             if(board[Row][Column] == 40) printf("%c", 187);
             if(board[Row][Column] == 50) printf("%c", 200);
             if(board[Row][Column] == 60) printf("%c", 188);
-            if(board[Row][Column] == 70) printf("%c", 205);
-            if(board[Row][Column] == 80) printf("%c", 215);
+            if(board[Row][Column] == 63) printf("%c", 205);
+            if(board[Row][Column] == 62) printf("%c", 215);
+            //player 2 color around house
             setTextColor(9,colorscreen);
             if(board[Row][Column] == 33) printf("%c", 201);
             if(board[Row][Column] == 44) printf("%c", 187);
             if(board[Row][Column] == 55) printf("%c", 200);
-            if(board[Row][Column] == 66) printf("%c", 188);
-            if(board[Row][Column] == 77) printf("%c", 205);
-            if(board[Row][Column] == 88) printf("%c", 215);
+            if(board[Row][Column] == 59) printf("%c", 188);
+            if(board[Row][Column] == 64) printf("%c", 205);
+            if(board[Row][Column] == 61) printf("%c", 215);
             setTextColor(10,colorscreen);
+            //+
             if(board[Row][Column] == 400) printf("+");
             setTextColor(0,colorscreen);
             if(board[Row][Column] == 30 || board[Row][Column] == 33)  board[Row][Column] = 3;
             if(board[Row][Column] == 40 || board[Row][Column] == 44)  board[Row][Column] = 4;
             if(board[Row][Column] == 50 || board[Row][Column] == 55)  board[Row][Column] = 5;
-            if(board[Row][Column] == 60 || board[Row][Column] == 66)  board[Row][Column] = 6;
-            if(board[Row][Column] == 70 || board[Row][Column] == 77)  board[Row][Column] = 1;
-            if(board[Row][Column] == 80 || board[Row][Column] == 88)  board[Row][Column] = 2;
+            if(board[Row][Column] == 60 || board[Row][Column] == 59)  board[Row][Column] = 6;
+            if(board[Row][Column] == 63 || board[Row][Column] == 64)  board[Row][Column] = 1;
+            if(board[Row][Column] == 62 || board[Row][Column] == 61)  board[Row][Column] = 2;
             if(board[Row][Column] == 400)  board[Row][Column] = 0;
 	    }
 	    printf("\n");
 	}
-	////////////////////print the letters j and later to name the Columns.
-	name_lines = 73;
-	situation = 72+4*(14-size_board);
-	for(Row = size_board ; size_board >= 10 ; size_board--){
-		gotoxy(TotalRows+1+5,situation);
-		printf("%c",name_lines);
-		situation += 8;
-		name_lines++;
-	}
-	////////////////////////////
 }
 
