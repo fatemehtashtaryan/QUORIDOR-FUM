@@ -14,13 +14,13 @@ int check_move (int type_of_movement)
    if(size_board>12) x = 10 ;
    else x = 15 ;
    if (turn == 1){
-      beat = beat1;
+      beat = 200;
       column = column1;
       row = row1;
       full_house = 300;
    }
    else {//turn == 2;
-      beat = beat2;
+      beat = 300;
       column = column2;
       row = row2;
       full_house = 200;
@@ -48,8 +48,16 @@ int check_move (int type_of_movement)
         else
         {
             board[row][column] = 0 ;
-            board[row-4][column] = beat ;//placing beat 1
+            board[row-4][column] = 200 ;//placing beat
             row -= 4 ;
+             if (turn == 1){
+               column1 = column;
+               row1 = row;
+            }
+           else {//turn == 2;
+             column2 = column;
+             row2 = row;
+           }
             return 1;
         }
         break;
@@ -76,8 +84,16 @@ int check_move (int type_of_movement)
         else
         {
             board[row][column] = 0 ;
-            board[row+4][column] = beat ;//placing beat 1
+            board[row+4][column] = beat ;//placing beat
             row += 4;
+             if (turn == 1){
+               column1 = column;
+               row1 = row;
+            }
+           else {//turn == 2;
+             column2 = column;
+             row2 = row;
+           }
             return 1;
         }
         break;
@@ -103,8 +119,16 @@ int check_move (int type_of_movement)
         }
         else{
             board[row][column]=0;
-            board[row][column+8] = beat;//placing beat 1
+            board[row][column+8] = beat;//placing beat
             column += 8;
+             if (turn == 1){
+               column1 = column;
+               row1 = row;
+            }
+           else {//turn == 2;
+             column2 = column;
+             row2 = row;
+           }
             return 1;
         }
         break;
@@ -130,8 +154,16 @@ int check_move (int type_of_movement)
         }
         else{
             board[row][column] = 0;
-            board[row][column-8] = beat;//placing beat 1
+            board[row][column-8] = beat;//placing beat
             column -= 8;
+            if (turn == 1){
+               column1 = column;
+               row1 = row;
+            }
+         else {//turn == 2;
+             column2 = column;
+             row2 = row;
+          }
             return 1;
         }
         break;
