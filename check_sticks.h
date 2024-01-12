@@ -77,14 +77,13 @@ int DFS_Players(int  Row, int Column, int RowDestination, int ColumnDestination)
 }
 
 int CheckSticksPlayers(char TypeStick){
+    int x ; //for gotoxy function
+    if(size_board>12) x = 10 ;
+    else x = 15 ;
 
-    int x; //for gotoxy function
-    if(size_board>12) x=10;
-    else x= 15;
-
-	int ansDFSplayer1,ansDFSplayer2,coordRow,coordcolumn,i;
-	int stick, horizontalsticks,verticalsticks;
-	int RowDestination,ColumnDestination; //for DFS
+	int ansDFSplayer1, ansDFSplayer2, i;
+	int stick, horizontalsticks, verticalsticks;
+	int RowDestination, ColumnDestination; //for DFS
 	if ( turn ==1){
         stick=1000;
         horizontalsticks=horizontalsticks1;
@@ -95,22 +94,24 @@ int CheckSticksPlayers(char TypeStick){
          verticalsticks=verticalsticks2;
 	}
 	///////////////////////////////////////////////////////////////////Check number of sticks
-	if(TypeStick=='H' || TypeStick=='h'  ){
-		if(horizontalsticks==0){
-              setTextColor(12, colorscreen);
-			  gotoxy(x,38);
-			  printf("Your number of horizontal sticks is 0");
-			  setTextColor(0, colorscreen);
-            return 0;
-		}
-	}else{
-		if(verticalsticks==0){
-              setTextColor(12, colorscreen);
-              gotoxy(x,40);
-              printf("Your number of vertical sticks is 0");
-			  setTextColor(0, colorscreen);
-			 return 0;
-		}
+	if(turn != 3 && turn != 4){
+            if(TypeStick=='H' || TypeStick=='h'  ){
+                if(horizontalsticks==0){
+                      setTextColor(12, colorscreen);
+                      gotoxy(x,38);
+                      printf("Your number of horizontal sticks is 0");
+                      setTextColor(0, colorscreen);
+                    return 0;
+                }
+            }else{
+                if(verticalsticks==0){
+                      setTextColor(12, colorscreen);
+                      gotoxy(x,40);
+                      printf("Your number of vertical sticks is 0");
+                      setTextColor(0, colorscreen);
+                     return 0;
+                }
+            }
 	}
 	if(TypeStick == 'H' || TypeStick == 'h'  ){
         horizontalsticks--;
@@ -132,8 +133,8 @@ int CheckSticksPlayers(char TypeStick){
            columnlocation=getch();
 	   }
 	}
-	if(rowlocation>='a') rowlocation-=32;
-	if(columnlocation >= 'a') columnlocation -= 32;
+    if(rowlocation>='a') rowlocation-=32;
+    if(columnlocation >= 'a') columnlocation -= 32;
     ///////////////////////////////convert the position of stick to org coord
     coordRow=((int)rowlocation-64)*4;
 	coordcolumn=((int)columnlocation-64)*8-1;
