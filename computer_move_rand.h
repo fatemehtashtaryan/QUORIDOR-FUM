@@ -26,18 +26,14 @@ int computer_stick(){
             if(can_put_stick_h == 0 && can_put_stick_v==0) return 0;
             type_movement = rand()%2+1;//chosing horizontal or vertical stick
             if(type_movement == 1&& can_put_stick_h== 1 ){// if we can put horizontal stick
-                    printf("%d",type_movement );
                 do{
                     TypeStick = 'h';
                         can_put_stick_h = 0;
                         for(counter1 = 97; counter1 < size_board+96 && can_put_stick_h == 0; counter1++){//for checking places can put sticks
                              for(counter2 = 97; counter2 < size_board+96 && can_put_stick_h == 0; counter2++){
-                                  if(stick_movement_h[counter1-97][counter2-97] == 1 && stick_movement_h_full[counter1-97][counter2-97] == 3) {
-                                         printf("%d", stick_movement_h_full[counter1-97][counter2-97]);
-
+                                  if(stick_movement_h[counter1-97][counter2-97] == 1 && stick_movement_h_full[counter1-97][counter2-97] == 3){
                                       columnlocation=(char)counter1;
                                       rowlocation=(char)counter2;
-                                      printf("%c %c",rowlocation, columnlocation);
                                       turn = 4;
                                       result = CheckSticksPlayers(TypeStick);
                                       if(result==1) can_put_stick_h=1;
@@ -56,21 +52,18 @@ int computer_stick(){
                             result = CheckSticksPlayers(TypeStick);//checking for DFS
                             if (result ==0 ) stick_movement_h[rowlocat-97][columnlocat-97] = 0;//changing that position for putting stick to 0
                     }
-            }while(result == 0&& can_put_stick_h == 1);
-          }
+            }while(result == 0 && can_put_stick_h == 1);
+           }
           else type_movement = 2;
           if (type_movement == 2 && can_put_stick_v == 1){// if we can put vertical stick
-                 printf("%d",type_movement );
                 do{
                     TypeStick = 'v';
                         can_put_stick_v = 0;
                         for(counter1 = 97; counter1 < size_board+96 && can_put_stick_v == 0; counter1++){//for checking places can put sticks
                              for(counter2 = 97; counter2 < size_board+96 && can_put_stick_v == 0; counter2++){
                                   if(stick_movement_v[counter1-97][counter2-97] == 1 && stick_movement_v_full[counter1-97][counter2-97] == 3) {
-                                    printf("%d", stick_movement_v_full[counter1-97][counter2-97]);
                                       columnlocation=(char)counter1;
                                       rowlocation=(char)counter2;
-                                       printf("%c %c",rowlocation, columnlocation);
                                       turn = 4;
                                       result = CheckSticksPlayers(TypeStick);
                                       if(result ==1) can_put_stick_v=1;
@@ -81,7 +74,6 @@ int computer_stick(){
                      if(can_put_stick_v == 1){
                         do{
                             turn = 3;
-                            printf("%dv", can_put_stick_v);
                             rowlocat = rand()%(size_board-1)+97;//(size_board+95-97+1)
                             rowlocation = (char)rowlocat;
                             columnlocat = rand()%(size_board-1)+97;//(size_board+95-97+1)
@@ -99,7 +91,7 @@ int computer_stick(){
 }
 
 int move_computer(){
-    int counter, type_movement, result, can_move = 0, i, type_move;
+    int counter, type_movement, result = 0, can_move = 0, i, type_move;
     for(counter = 1; counter <= 4; counter++){//for checking places can move
      movement[counter-1].type_movement = counter;
      movement[counter-1].sw= 1 ;
