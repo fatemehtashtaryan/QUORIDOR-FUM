@@ -188,14 +188,13 @@ int CheckSticksPlayers(char TypeStick){
         DFplayer=1;
         lastrow=0;
 		ansDFSplayer1=DFS_Players(row1, column1, RowDestination,ColumnDestination);
-		printf("%d", ansDFSplayer1);
-        sleep(600);
         if(lastrow==1){
             ansDFSplayer1=1;
         }else{
             ansDFSplayer1=0;
         }
-
+        printf("%d", ansDFSplayer1);
+        sleep(600);
        ///////////////////////////////////////////// find a neighborhood player 2
         if(board[row2-2][column2]!=1000 && board[row2-2][column2]!=8 && board[row2-2][column2]!=2000){ //up
             RowDestination=row2-4;
@@ -215,13 +214,13 @@ int CheckSticksPlayers(char TypeStick){
         DFplayer=2;
         lastrow=0;
         ansDFSplayer2=DFS_Players(row2,column2,RowDestination,ColumnDestination);
-        printf("%d", ansDFSplayer2);
-        sleep(600);
         if(lastrow==1){
             ansDFSplayer2=1;
         }else{
             ansDFSplayer2=0;
         }
+        printf("%d", ansDFSplayer2);
+        sleep(600);
         lastrow = 0 ;
         ///////////////////////////////////////////////////// close roads
 		if(ansDFSplayer1 == 0 || ansDFSplayer2 == 0){
