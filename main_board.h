@@ -4,6 +4,13 @@
 //this file about building and numbering boardgame
 int lineColumnsnumbering(int TotalRows, int TotalColumn){
 	///////////////////////////////////////////////line numbering.
+	int counter_row, counter_column;
+	for(counter_row=0; counter_row<14; counter_row++){
+        for(counter_column=0; counter_column<14; counter_column++){
+            stick_movement_h_full[counter_row][counter_column]=3;
+            stick_movement_v_full[counter_row][counter_column]=3;
+        }
+	}
    	int  Row, Column ,name_lines = 65;
     for(Row = 0; Row <= TotalRows; Row++){
 		if((Row+2)%4  == 0){
