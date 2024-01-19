@@ -11,14 +11,16 @@
 char name_player_1[20], name_player_2[20], TypeStick;
 char message_board[6][100] ;
 int TotalRows, TotalColumn ;
-int beat2, beat1 ;
-int turn;
+int beat2 , beat1 ;
+int turn=1;
+int turncounter=4;
 int row1, column1, verticalsticks1, horizontalsticks1 ;
-int row2=2, column2, verticalsticks2, horizontalsticks2 ;
-int board[120][120] ;
+int row2=2, column2=1, verticalsticks2, horizontalsticks2 ;
+int row01,column01,row02,column02;  //befor motion
+int board[120][120];
 int size_board ;
 int beat1_1=35, beat1_2=42, beat2_1=36, beat2_2=63 ;
-int colorscreen = 7 ;
+int colorscreen=7 ;
 int d=205 ;//horizontal line
 int b=215 ;//vertical line
 int a=201 ;//upper right corner
@@ -28,8 +30,27 @@ int c=200 ;//lower right corner
 int sticks = 178 ;
 int DFplayer;
 int lastrow=0; //for DFS
-
-void setTextColor (int textColor, int backColor)//to change the color
+int stick_movement_h_full[14][14];
+int stick_movement_v_full[14][14];
+int stick_movement_h_full_copy[14][14];
+int stick_movement_v_full_copy[14][14];
+int coordRow, coordcolumn;
+int Targetrow,Targetcolumn;
+int swundo1=-1,swundo2=-1; //undo
+int swmove1,swmove2,swstick1,swstick2;
+char PLAYER;
+char rowlocation,columnlocation; // the place of receipt of sticks
+int load=0;
+int i,sw=1,t;
+int player2 = 8;
+int sw_minimax;
+int counter=0;
+int typeplayer2=2;
+int depth;
+int Row,Column;
+int horizontalstick_copy2, horizontalstick_copy1, verticalstick_copy1, verticalstick_copy2;
+int verticalstick_copy, horizontalstick_copy;
+void setTextColor (int textColor, int backColor)
 {
      HANDLE consoleHandle = GetStdHandle (STD_OUTPUT_HANDLE) ;
      int colorAttribute = backColor << 4 | textColor ;
@@ -46,7 +67,7 @@ void gotoxy (int x, int y)
     SetConsoleCursorPosition (consoleHandle, cursorCoord) ;
 }
 
-void beep (int frequency, int duration)//for voicing
+void beep (int frequency, int duration)
  {
     Beep (frequency, duration) ;
 }
@@ -73,12 +94,45 @@ struct coordinates{
     int row;
     int column;
 };
-
 struct visited{
     struct coordinates location[maxi] ;
     int coordinatesNo;
 };
-
 struct visited house;
 
+
+struct players_information{
+    char name[20];
+    int beat;
+    int verticalsticks;
+    int horizontalstick;
+    int row;
+    int column;
+    int turn;
+    char player[10];
+};
+struct players_information infoplayer1;
+struct players_information infoplayer2;
+
+struct board_information{
+    int colorscreen;
+    int size_board ;
+};
+struct children{
+         int row;
+         int column;
+         char movement;
+         int numchildren;
+         int score;
+};
+
+struct children true_child[120];
+
+struct board_information infoboard;
+struct copy_game{
+     int copyverticalsticks1, copyhorizontalsticks1;
+     int copyverticalsticks2, copyhorizontalsticks2;
+     int copyboard[120][120];
+};
+struct copy_game copy_board;
 #endif // subcodes
