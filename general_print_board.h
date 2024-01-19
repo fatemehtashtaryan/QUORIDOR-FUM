@@ -25,9 +25,9 @@ void general_print()
     sleep (150) ;*/
     int x=2,y=44,t=0,type;
     int  menu_direction;
-    home_menu(x,y);    gotoxy(x+2,y+12);   printf("CONTINUE GAME");
-    home_menu(x+5,y); gotoxy(x+7,y+14);  printf("LOAD GAME");
-    home_menu(x+10,y); gotoxy(x+12,y+14);  printf("CUSTOMIZE");
+    menu(x,y);    gotoxy(x+2,y+12);   printf("CONTINUE GAME");
+    menu(x+5,y); gotoxy(x+7,y+14);  printf("LOAD GAME");
+    menu(x+10,y); gotoxy(x+12,y+14);  printf("CUSTOMIZE");
     while(1){
         menu_direction = getch() ;
         if(menu_direction==13){ break;}
@@ -45,28 +45,28 @@ void general_print()
         colorscreen=0;
         if(t==1){
             setTextColor (7,colorscreen) ;
-             home_menu(x+5,y); gotoxy(x+7,y+14);  printf("LOAD GAME");
-             home_menu(x+10,y); gotoxy(x+12,y+14);  printf("CUSTOMIZE");
+             menu(x+5,y); gotoxy(x+7,y+14);  printf("LOAD GAME");
+             menu(x+10,y); gotoxy(x+12,y+14);  printf("CUSTOMIZE");
             setTextColor (2,colorscreen) ;
-             home_menu(x,y);gotoxy(x+2,y+12);printf("CONTINUE GAME");
+             menu(x,y);gotoxy(x+2,y+12);printf("CONTINUE GAME");
 
             type=1;
         }
         if( t==2){
             setTextColor (7,colorscreen) ;
-            home_menu(x,y);gotoxy(x+2,y+12);printf("CONTINUE GAME");
-             home_menu(x+10,y); gotoxy(x+12,y+14);  printf("CUSTOMIZE");
+            menu(x,y);gotoxy(x+2,y+12);printf("CONTINUE GAME");
+            menu(x+10,y); gotoxy(x+12,y+14);  printf("CUSTOMIZE");
             setTextColor (9,colorscreen) ;
-           home_menu(x+5,y); gotoxy(x+7,y+14);  printf("LOAD GAME");
+            menu(x+5,y); gotoxy(x+7,y+14);  printf("LOAD GAME");
 
             type=2;
           }
          if(t==3){
             setTextColor (7,colorscreen) ;
-            home_menu(x,y);gotoxy(x+2,y+12);printf("CONTINUE GAME");
-            home_menu(x+5,y); gotoxy(x+7,y+14);  printf("LOAD GAME");
+            menu(x,y);gotoxy(x+2,y+12);printf("CONTINUE GAME");
+            menu(x+5,y); gotoxy(x+7,y+14);  printf("LOAD GAME");
             setTextColor (6,colorscreen) ;
-             home_menu(x+10,y); gotoxy(x+12,y+14);  printf("CUSTOMIZE");
+             menu(x+10,y); gotoxy(x+12,y+14);  printf("CUSTOMIZE");
             type=3;
         }
         if(t==3){
@@ -113,24 +113,19 @@ void general_print()
      return 1;
 
     }
->>>>>>> 219c9dcddfb31bbdcba4a623dd31c589a53af1a7
     setTextColor(0, 7);
     system ("cls") ;
     gotoxy (15, 43) ;
     sleep (100) ;
-<<<<<<< HEAD
     setTextColor (0, 3) ;
     Design_color_screen() ;
     system ("cls") ;
     gotoxy (15, 47) ;
-    setTextColor (34, colorscreen) ;*/
-=======
+    setTextColor (34, colorscreen) ;
     setTextColor (0, 7) ;
     Design_color_screen() ;
     system ("cls") ;
     gotoxy (15, 47) ;
-
->>>>>>> 219c9dcddfb31bbdcba4a623dd31c589a53af1a7
     printf ("Enter the size of the GAME BOARD: ") ;
     while(1)
     {
