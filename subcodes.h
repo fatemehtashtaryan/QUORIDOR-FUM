@@ -11,6 +11,7 @@
 char name_player_1[20], name_player_2[20], TypeStick;
 char message_board[6][100] ;
 int TotalRows, TotalColumn ;
+<<<<<<< HEAD
 int beat2 , beat1 ;
 int turn=1;
 int turncounter=4;
@@ -19,6 +20,18 @@ int row2=2, column2=1, verticalsticks2, horizontalsticks2 ;
 int row01,column01,row02,column02;  //befor motion
 int board[120][120];
 int size_board ;
+=======
+int beat2=36 , beat1 ;
+int turn=1;
+int turncounter=4;
+int row1, column1, verticalsticks1, horizontalsticks1 ;
+int primaryrow1, primarycolumn1, primaryverticalsticks1, primaryhorizontalsticks1 ; //for reset
+int row2=2, column2=1, verticalsticks2=2, horizontalsticks2=2 ;
+int primaryrow2=2, primarycolumn2=1, primaryverticalsticks2=2, primaryhorizontalsticks2=2 ;
+int row01,column01,row02,column02;  //befor motion
+int board[120][120];
+int size_board=3 ;
+>>>>>>> d6b70ab19f65a62790f12e634d12e51e33c5f568
 int beat1_1=35, beat1_2=42, beat2_1=36, beat2_2=63 ;
 int colorscreen=7 ;
 int d=205 ;//horizontal line
@@ -32,8 +45,11 @@ int DFplayer;
 int lastrow=0; //for DFS
 int stick_movement_h_full[14][14];
 int stick_movement_v_full[14][14];
+<<<<<<< HEAD
 int stick_movement_h_full_copy[14][14];
 int stick_movement_v_full_copy[14][14];
+=======
+>>>>>>> d6b70ab19f65a62790f12e634d12e51e33c5f568
 int coordRow, coordcolumn;
 int Targetrow,Targetcolumn;
 int swundo1=-1,swundo2=-1; //undo
@@ -45,11 +61,19 @@ int i,sw=1,t;
 int player2 = 8;
 int sw_minimax;
 int counter=0;
+<<<<<<< HEAD
 int typeplayer2=2;
 int depth;
 int Row,Column;
 int horizontalstick_copy2, horizontalstick_copy1, verticalstick_copy1, verticalstick_copy2;
 int verticalstick_copy, horizontalstick_copy;
+=======
+int typeplayer2=0;
+int depth;
+int Row,Column;
+int  menu_direction;
+int option_direction;
+>>>>>>> d6b70ab19f65a62790f12e634d12e51e33c5f568
 void setTextColor (int textColor, int backColor)
 {
      HANDLE consoleHandle = GetStdHandle (STD_OUTPUT_HANDLE) ;
@@ -104,12 +128,24 @@ struct visited house;
 struct players_information{
     char name[20];
     int beat;
+<<<<<<< HEAD
     int verticalsticks;
+=======
+    int verticalstick;
+>>>>>>> d6b70ab19f65a62790f12e634d12e51e33c5f568
     int horizontalstick;
     int row;
     int column;
     int turn;
+<<<<<<< HEAD
     char player[10];
+=======
+    int typeplayer;
+    int primarycolumn;
+    int primaryrow;
+    int primaryverticalstick;
+    int primaryhorizontalstick;
+>>>>>>> d6b70ab19f65a62790f12e634d12e51e33c5f568
 };
 struct players_information infoplayer1;
 struct players_information infoplayer2;
@@ -129,6 +165,10 @@ struct children{
 struct children true_child[120];
 
 struct board_information infoboard;
+<<<<<<< HEAD
+=======
+
+>>>>>>> d6b70ab19f65a62790f12e634d12e51e33c5f568
 struct copy_game{
      int copyverticalsticks1, copyhorizontalsticks1;
      int copyverticalsticks2, copyhorizontalsticks2;
