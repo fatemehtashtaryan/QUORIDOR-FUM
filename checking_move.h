@@ -27,9 +27,10 @@ int check_move (int type_of_movement)
    }
    switch (type_of_movement){
      case 72 :
+        if(PLAYER!='C'){//if it is not for minimax
         if (board[row-2][column] == 1000 || board[row-2][column] == 8 || board[row-2][column] == 2000)//check sticks & walls
         {
-            if(turn != 3 && PLAYER != 'C'){
+            if(turn != 3){
               beep(500, 100);
               gotoxy(x, 44);
               setTextColor(12, colorscreen);
@@ -40,7 +41,7 @@ int check_move (int type_of_movement)
         }
         else if (board[row-4][column] == full_house )//check empty house
         {
-            if(turn != 3 && PLAYER != 'C'){
+            if(turn != 3){
               beep(500, 100);
               gotoxy(x, 44);
               setTextColor(12, colorscreen);
@@ -51,7 +52,6 @@ int check_move (int type_of_movement)
         }
         else
         {
-             if(PLAYER != 'C'){
                 board[row][column] = 0 ;
                 board[row-4][column] = beat ;//placing beat
                 row -= 4 ;
@@ -63,15 +63,23 @@ int check_move (int type_of_movement)
                     column2 = column;
                     row2 = row;
                 }
-             }
           return 1;
+        }
+        }
+        else{//for minimax
+              if (copy_board.copyboard[row-2][column] == 1000 || copy_board.copyboard[row-2][column] == 8 || copy_board.copyboard[row-2][column] == 2000)//check sticks & walls
+                  return 0;
+              else if(copy_board.copyboard[row-4][column] == full_house)
+                return 0;
+              else return 1;
         }
         break;
 
     case 80 :
+        if(PLAYER!='C'){
         if ( board[row+2][column] == 1000 || board[row+2][column] == 8 || board[row+2][column] == 2000)//check sticks & walls
         {
-            if(turn != 3 && PLAYER != 'C'){
+            if(turn != 3){
               beep (500, 100);
               gotoxy (x, 44);
               setTextColor (12, colorscreen);
@@ -82,7 +90,7 @@ int check_move (int type_of_movement)
         }
         else if (board[row+4][column] == full_house )//check empty house
         {
-            if(turn != 3 && PLAYER != 'C'){
+            if(turn != 3){
               beep (500, 100);
               gotoxy (x, 44);
               setTextColor (12, colorscreen);
@@ -93,7 +101,6 @@ int check_move (int type_of_movement)
         }
         else
         {
-            if(PLAYER != 'C'){
                 board[row][column] = 0 ;
                 board[row+4][column] = beat ;//placing beat
                 row += 4;
@@ -105,15 +112,23 @@ int check_move (int type_of_movement)
                      column2 = column;
                      row2 = row;
                 }
-            }
             return 1;
         }
+        }
+        else{
+            if( copy_board.copyboard[row+2][column] == 1000 || copy_board.copyboard[row+2][column] == 8 || copy_board.copyboard[row+2][column] == 2000)//check sticks & walls
+                return 0;
+            else if(copy_board.copyboard[row+4][column] == full_house)
+                return 0;
+            else return 1;
+            }
         break;
 
     case 77:
+        if(PLAYER!='C'){
         if (board[row][column+4] ==1000 || board[row][column+3]==7 || board[row][column+4] ==2000)//check sticks & walls
             {
-            if(turn != 3 && PLAYER != 'C'){
+            if(turn != 3){
               beep(500, 100);
               gotoxy(x, 44);
               setTextColor(12, colorscreen);
@@ -124,7 +139,7 @@ int check_move (int type_of_movement)
         }
         else if (board[row][column+8] == full_house)//check empty house
            {
-            if(turn != 3 && PLAYER != 'C'){
+            if(turn != 3){
                 beep(500, 100);
                 gotoxy(x, 44);
                 setTextColor(12, colorscreen);
@@ -134,7 +149,6 @@ int check_move (int type_of_movement)
             return 0;
         }
         else{
-             if(PLAYER != 'C'){
                 board[row][column]=0;
                 board[row][column+8] = beat;//placing beat
                 column += 8;
@@ -146,15 +160,23 @@ int check_move (int type_of_movement)
                     column2 = column;
                     row2 = row;
                  }
-             }
             return 1;
+        }
+        }
+        else{
+            if (copy_board.copyboard[row][column+4] ==1000 || copy_board.copyboard[row][column+3]==7 || copy_board.copyboard[row][column+4] ==2000)//check sticks & walls
+                return 0;
+            else if(copy_board.copyboard[row][column+8] == full_house)
+                return 0;
+            else return 1;
         }
         break;
 
     case 75:
+        if(PLAYER != 'C'){
         if (board[row][column-4] == 1000 || board[row][column-3] == 7 || board[row][column-4] == 2000)//check sticks & walls
             {
-            if(turn != 3 && PLAYER != 'C'){
+            if(turn != 3){
               beep(500, 100);
               gotoxy(x, 44);
               setTextColor(12, colorscreen);
@@ -165,7 +187,7 @@ int check_move (int type_of_movement)
         }
         else if(board[row][column-8] == full_house)//check empty house
             {
-            if(turn != 3 && PLAYER != 'C'){
+            if(turn != 3){
               beep(500, 100);
               gotoxy(x, 44);
               setTextColor(12, colorscreen);
@@ -175,7 +197,6 @@ int check_move (int type_of_movement)
             return 0;
         }
         else{
-             if(PLAYER != 'C'){
                 board[row][column] = 0;
                 board[row][column-8] = beat;//placing beat
                   column -= 8;
@@ -187,9 +208,16 @@ int check_move (int type_of_movement)
                         column2 = column;
                         row2 = row;
                     }
-             }
             return 1;
         }
+        }
+        else{
+             if (copy_board.copyboard[row][column-4] == 1000 || copy_board.copyboard[row][column-3] == 7 || copy_board.copyboard[row][column-4] == 2000)//check sticks & walls
+                return 0;
+             else if(board[row][column-8] == full_house)
+                return 0;
+             else return 1;
+             }
         break;
    }
 }
