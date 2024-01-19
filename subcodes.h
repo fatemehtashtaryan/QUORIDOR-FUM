@@ -11,7 +11,6 @@
 char name_player_1[20], name_player_2[20], TypeStick;
 char message_board[6][100] ;
 int TotalRows, TotalColumn ;
-<<<<<<< HEAD
 int beat2 , beat1 ;
 int turn=1;
 int turncounter=4;
@@ -20,7 +19,6 @@ int row2=2, column2=1, verticalsticks2, horizontalsticks2 ;
 int row01,column01,row02,column02;  //befor motion
 int board[120][120];
 int size_board ;
-=======
 int beat2=36 , beat1 ;
 int turn=1;
 int turncounter=4;
@@ -31,7 +29,6 @@ int primaryrow2=2, primarycolumn2=1, primaryverticalsticks2=2, primaryhorizontal
 int row01,column01,row02,column02;  //befor motion
 int board[120][120];
 int size_board=3 ;
->>>>>>> d6b70ab19f65a62790f12e634d12e51e33c5f568
 int beat1_1=35, beat1_2=42, beat2_1=36, beat2_2=63 ;
 int colorscreen=7 ;
 int d=205 ;//horizontal line
@@ -128,24 +125,18 @@ struct visited house;
 struct players_information{
     char name[20];
     int beat;
-<<<<<<< HEAD
     int verticalsticks;
-=======
     int verticalstick;
->>>>>>> d6b70ab19f65a62790f12e634d12e51e33c5f568
     int horizontalstick;
     int row;
     int column;
     int turn;
-<<<<<<< HEAD
     char player[10];
-=======
     int typeplayer;
     int primarycolumn;
     int primaryrow;
     int primaryverticalstick;
     int primaryhorizontalstick;
->>>>>>> d6b70ab19f65a62790f12e634d12e51e33c5f568
 };
 struct players_information infoplayer1;
 struct players_information infoplayer2;
@@ -165,10 +156,7 @@ struct children{
 struct children true_child[120];
 
 struct board_information infoboard;
-<<<<<<< HEAD
-=======
 
->>>>>>> d6b70ab19f65a62790f12e634d12e51e33c5f568
 struct copy_game{
      int copyverticalsticks1, copyhorizontalsticks1;
      int copyverticalsticks2, copyhorizontalsticks2;
