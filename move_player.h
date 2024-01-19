@@ -1,14 +1,13 @@
 #include "subcodes.h"
 #include "checking_move.h"
 #include "check_sticks.h"
-#include "gameboard_menu.h"
+#include "game_menu.h"
 int move_player;
 int result_check;
 int menu_direction;
 
 int move_play(){
-    int x=TotalRows+12,y=30,t=0,type=1;
-    int type_move;
+    int x=TotalRows+8, y=30, t=0, type=1;
     gotoxy(x+1,y-3); printf("<-");
     menu(x,y);    gotoxy(x+1,y+3);   printf("move");
     menu(x,y+11); gotoxy(x+1,y+13);  printf("stick");
@@ -17,10 +16,10 @@ int move_play(){
     menu(x,y+44); gotoxy(x+1,y+47);  printf("save");
     gotoxy(x+1,y+55);  printf("->");
      /////////////
-   while(getch()!=13){
+   menu_direction = getch();
+   while(menu_direction!=13){
         menu_direction = getch() ;
-        while( menu_direction != 224){ //check true button
-
+        while( menu_direction != 224 && menu_direction != 13){ //check true button
              menu_direction = getch();
         }
          menu_direction = getch() ;
@@ -31,7 +30,6 @@ int move_play(){
             if(type==3){t=2;}
             if(type==4){t=3;}
             if(type==5){t=4;}
-
         }
         if( t==1){
             setTextColor (0,colorscreen) ;
@@ -39,7 +37,6 @@ int move_play(){
             menu(x,y+11); gotoxy(x+1,y+13);  printf("stick");
             setTextColor (4,colorscreen) ;
             menu(x,y);    gotoxy(x+1,y+3);   printf("move");
-
             type=1;
         }
         if( t==2){
@@ -78,9 +75,9 @@ int move_play(){
 
              type=5;
         }
-           if(t==5) {
+           if(t==5){
             t=0;
-           }
+        }
    }
 /////////////////////////
    setTextColor (0,colorscreen) ;
@@ -123,6 +120,5 @@ int move_play(){
      gotoxy(x+4,y+15);
      printf("saved!");
    }
-
 }
 
