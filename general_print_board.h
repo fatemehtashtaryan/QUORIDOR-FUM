@@ -1,4 +1,7 @@
-#include "question_player.h"
+#ifndef general_print_board
+#define general_print_board
+
+#include "setting.h"
 #include "Scoreboard_player.h"
 #include "design_screen.h"
 #include "main_board.h"
@@ -20,30 +23,19 @@ void general_print()
     const char *welcome = "Welcome to the FUM QUORIDOR!";
     printslowly( welcome,18,48) ;
     sleep (150) ;*/
-<<<<<<< HEAD
-    int x=2,y=44,t=0,type;
-    int  menu_direction;
-    menu(x,y);    gotoxy(x+2,y+12);   printf("CONTINUE GAME");
-    menu(x+5,y); gotoxy(x+7,y+14);  printf("LOAD GAME");
-    menu(x+10,y); gotoxy(x+12,y+14);  printf("CUSTOMIZE");
-=======
-    int t=0,type,x,y,typeop,typeopp;
-
-
+    int t=0,type,x,y,typeplayer,typelevel,typemembers,typefourplayer,swplay=1;
+    char nameplayer2[20],nameplayer3[20],nameplayer4[20];
     gotoxy(2,50);
     printf("Q U O R I D O R   F U M!");
     menu_frame(4,36);
-
     x=7;y=44;
     home_menu(x,y);    gotoxy(x+2,y+12);   printf("CONTINUE GAME");
     home_menu(x+5,y); gotoxy(x+7,y+14);  printf("LOAD GAME");
     home_menu(x+10,y); gotoxy(x+12,y+14);  printf("CUSTOMIZE");
->>>>>>> d6b70ab19f65a62790f12e634d12e51e33c5f568
     while(1){
         menu_direction = getch() ;
         if(menu_direction==13){ break;}
         while( menu_direction != 224){ //check true button
-
              menu_direction = getch();
         }
         menu_direction = getch() ;
@@ -53,67 +45,47 @@ void general_print()
             if(type==2){t=1;}
             if(type==3){t=2;}
         }
-        colorscreen=0;
         if(t==1){
-            setTextColor (7,colorscreen) ;
-<<<<<<< HEAD
-             menu(x+5,y); gotoxy(x+7,y+14);  printf("LOAD GAME");
-             menu(x+10,y); gotoxy(x+12,y+14);  printf("CUSTOMIZE");
-            setTextColor (2,colorscreen) ;
-             menu(x,y);gotoxy(x+2,y+12);printf("CONTINUE GAME");
-=======
+            setTextColor (7,0) ;
              home_menu(x+5,y); gotoxy(x+7,y+14);  printf("LOAD GAME");
              home_menu(x+10,y); gotoxy(x+12,y+14);  printf("CUSTOMIZE");
-             setTextColor (2,colorscreen) ;
+             setTextColor (2,0) ;
              home_menu(x,y);gotoxy(x+2,y+12);printf("CONTINUE GAME");
->>>>>>> d6b70ab19f65a62790f12e634d12e51e33c5f568
 
             type=1;
         }
         if( t==2){
-            setTextColor (7,colorscreen) ;
-<<<<<<< HEAD
-            menu(x,y);gotoxy(x+2,y+12);printf("CONTINUE GAME");
-            menu(x+10,y); gotoxy(x+12,y+14);  printf("CUSTOMIZE");
-            setTextColor (9,colorscreen) ;
-            menu(x+5,y); gotoxy(x+7,y+14);  printf("LOAD GAME");
-=======
+            setTextColor (7,0) ;
             home_menu(x,y);gotoxy(x+2,y+12);printf("CONTINUE GAME");
             home_menu(x+10,y); gotoxy(x+12,y+14);  printf("CUSTOMIZE");
-            setTextColor (9,colorscreen) ;
+            setTextColor (9,0) ;
             home_menu(x+5,y); gotoxy(x+7,y+14);  printf("LOAD GAME");
->>>>>>> d6b70ab19f65a62790f12e634d12e51e33c5f568
-
             type=2;
           }
          if(t==3){
-            setTextColor (7,colorscreen) ;
-            menu(x,y);gotoxy(x+2,y+12);printf("CONTINUE GAME");
-            menu(x+5,y); gotoxy(x+7,y+14);  printf("LOAD GAME");
-            setTextColor (6,colorscreen) ;
-<<<<<<< HEAD
-             menu(x+10,y); gotoxy(x+12,y+14);  printf("CUSTOMIZE");
-=======
+            setTextColor (7,0) ;
+            home_menu(x,y);gotoxy(x+2,y+12);printf("CONTINUE GAME");
+            home_menu(x+5,y); gotoxy(x+7,y+14);  printf("LOAD GAME");
+            setTextColor (6,0) ;
             home_menu(x+10,y); gotoxy(x+12,y+14);  printf("CUSTOMIZE");
->>>>>>> d6b70ab19f65a62790f12e634d12e51e33c5f568
             type=3;
-        }
-        if(t==3){
             t=0;
         }
     }
-    if(type==1){
+     if(type==1){//countinue game
+        t=0;
         system("cls");
-        setTextColor (7,colorscreen) ;
+        setTextColor (7,0) ;
         gotoxy(2,51);
         printf("Q U O R I D O R   F U M!");
         menu_frame(4,36);
-        gotoxy(7,59);
+        gotoxy(6,59);
         printf("OPPONENT");
-        x=9;y=44;
+        x=8;y=44;
         menu_opponent(x,y);  gotoxy(x+2,y+4); printf("Computer");
-        menu_opponent(x,y+21);   gotoxy(x+2,y+25); printf("2 Players");
-        t=0;
+        menu_opponent(x,y+21);   gotoxy(x+2,y+26); printf("Players");
+        menu(22,y+14);   gotoxy(23,y+17); printf("Back");
+
         while(1){
             option_direction = getch() ;
             if(option_direction==13){ break;}
@@ -124,39 +96,51 @@ void general_print()
             option_direction = getch() ;
             t++;
             if(option_direction==72){
-                if(typeop==1){t=2;}
-                if(typeop==2){t=1;}
+                if(typeplayer==1){t=3;}
+                if(typeplayer==2){t=1;}
+                if(typeplayer==3){t=2;}
             }
             colorscreen=0;
             if(t==1){
                 setTextColor (7,colorscreen) ;
                 menu_opponent(x,y);  gotoxy(x+2,y+4); printf("Computer");
+                menu(22,y+14);   gotoxy(23,y+17); printf("Back");
                 setTextColor (3,colorscreen) ;
-                menu_opponent(x,y+21);   gotoxy(x+2,y+25); printf("2 Players");
-                typeop=1;
+                menu_opponent(x,y+21);   gotoxy(x+2,y+26); printf("Players");
+
+                typeplayer=1;
             }
             if( t==2){
                 setTextColor (7,colorscreen) ;
-                menu_opponent(x,y+21);   gotoxy(x+2,y+25); printf("2 Players");
+                menu_opponent(x,y+21);   gotoxy(x+2,y+26); printf("Players");
+                menu(22,y+14);   gotoxy(23,y+17); printf("Back");
                 setTextColor (5,colorscreen) ;
                 menu_opponent(x,y);  gotoxy(x+2,y+4); printf("Computer");
-                typeop=2;
-              }
 
-             if(t==2){
+                typeplayer=2;
+              }
+           if(t==3){
+                setTextColor (4,colorscreen) ;
+                menu(22,y+14);   gotoxy(23,y+17); printf("Back");
+                setTextColor (7,colorscreen) ;
+                menu_opponent(x,y+21);   gotoxy(x+2,y+26); printf("Players");
+                menu_opponent(x,y);  gotoxy(x+2,y+4); printf("Computer");
+                typeplayer=3;
+           }
+           if(t==3){
                 t=0;
             }
        }
 
-        if(typeop==2){
-
+        if(typeplayer==2){ //play with computer
             t=0;
             setTextColor (7,colorscreen) ;
-            gotoxy(15,59);
+            gotoxy(14,59);
             printf("Difficulty");
-            x=17;y=44;
+            x=16;y=44;
             menu_opponent(x,y);  gotoxy(x+2,y+4); printf("Level 1");
             menu_opponent(x,y+21);   gotoxy(x+2,y+25); printf("Level 2");
+            menu(22,y+14);   gotoxy(23,y+17); printf("Back");
             while(1){
                 option_direction = getch() ;
                 if(option_direction==13){ break;}
@@ -167,59 +151,264 @@ void general_print()
                 option_direction = getch() ;
                 t++;
                 if(option_direction==72){
-                    if(typeop==1){t=2;}
-                    if(typeop==2){t=1;}
+                    if(typelevel==1){t=3;}
+                    if(typelevel==2){t=1;}
+                    if(typelevel==3){t=2;}
                 }
                 colorscreen=0;
                 if(t==1){
                      setTextColor (7,colorscreen) ;
                      menu_opponent(x,y);  gotoxy(x+2,y+4); printf("Level 1");
-                     setTextColor (4,colorscreen) ;
+                     menu(22,y+14);   gotoxy(23,y+17); printf("Back");
+                     setTextColor (2,colorscreen) ;
                      menu_opponent(x,y+21);   gotoxy(x+2,y+25); printf("Level 2");
-                     typeopp=1;
+                     typelevel=1;
                 }
                 if( t==2){
                     setTextColor (7,colorscreen) ;
                     menu_opponent(x,y+21);   gotoxy(x+2,y+25); printf("Level 2");
+                    menu(22,y+14);   gotoxy(23,y+17); printf("Back");
                     setTextColor (6,colorscreen) ;
                     menu_opponent(x,y);  gotoxy(x+2,y+4); printf("Level 1");
-                    typeopp=2;
+                    typelevel=2;
                   }
-
-                 if(t==2){
+                if(t==3){
+                    setTextColor (7,colorscreen) ;
+                    menu_opponent(x,y+21);   gotoxy(x+2,y+25); printf("Level 2");
+                    menu_opponent(x,y);  gotoxy(x+2,y+4); printf("Level 1");
+                    setTextColor (4,colorscreen) ;
+                    menu(22,y+14);   gotoxy(23,y+17); printf("Back");
+                    typelevel=3;
+                }
+                 if(t==3){
                     t=0;
                 }
           }
 
-        if(typeopp==2){
-            typeplayer2=1;
-        }else{
-            typeplayer2=2;
+          if(typelevel==2){
+            typeplayer2=1; //level 1
+          }else if(typelevel==1){
+            typeplayer2=2; //level 2
+          }else{
+            setTextColor (7,0) ;
+            system ("cls") ;
+            main();
+          }
+    }else if(typeplayer==1){ //play with sveral members
+        t=0;
+        setTextColor (7,colorscreen) ;
+        gotoxy(14,54);
+        printf("number of members");
+        x=16;y=44;
+        menu_opponent(x,y);  gotoxy(x+2,y+4); printf("2 players");
+        menu_opponent(x,y+21);   gotoxy(x+2,y+25); printf("4 players");
+        menu(22,y+14);   gotoxy(23,y+17); printf("Back");
+        while(1){
+            option_direction = getch() ;
+            if(option_direction==13){ break;}
+            while( option_direction != 224){ //check true button
+                     option_direction = getch();
+            }
+            option_direction = getch() ;
+            t++;
+            if(option_direction==72){
+                if(typemembers==1){t=3;}
+                if(typemembers==2){t=1;}
+                if(typemembers==3){t=2;}
+            }
+            colorscreen=0;
+            if(t==1){
+                setTextColor (7,colorscreen) ;
+                menu_opponent(x,y);  gotoxy(x+2,y+4); printf("2 players");
+                menu(22,y+14);   gotoxy(23,y+17); printf("Back");
+                setTextColor (2,colorscreen) ;
+                menu_opponent(x,y+21);   gotoxy(x+2,y+25); printf("4 players");
+                typemembers=1;
+
+            }if( t==2){
+                setTextColor (7,colorscreen) ;
+                menu_opponent(x,y+21);   gotoxy(x+2,y+25); printf("4 players");
+                menu(22,y+14);   gotoxy(23,y+17); printf("Back");
+                setTextColor (6,colorscreen) ;
+                menu_opponent(x,y);  gotoxy(x+2,y+4); printf("2 players");
+                typemembers=2;
+
+            }if(t==3){
+                setTextColor (7,colorscreen) ;
+                menu_opponent(x,y);  gotoxy(x+2,y+4); printf("2 players");
+                menu_opponent(x,y+21);   gotoxy(x+2,y+25); printf("4 players");
+                setTextColor (4,colorscreen) ;
+                menu(22,y+14);   gotoxy(23,y+17); printf("Back");
+                typemembers=3;
+
+            }if(t==3){
+                t=0;
+            }
         }
-    }
-          //Converting to desired number of columns and rows
-        setTextColor(0, 7);
-        system ("cls") ;
-        gotoxy (15, 43) ;
-        setTextColor (0, 7) ;
-        TotalRows = 4*size_board+1 ;
-        TotalColumn = 8*size_board-1 ;
-        system ("cls") ;
-        setTextColor (0, 7) ;
-        colorscreen=7;
-        question_boardplayer1() ;
-        if(typeplayer2!=1 && typeplayer2!=2) question_boardplayer2() ;
-        system ("cls") ;
-        sleep (50) ;
-        Scoreboard() ;
+        if(typemembers==2){
+            typeplayer2=0;
+        }
+        else if(typemembers==1){
+            x=10;y=44;t=0;
+            int y2=y+25 ,y3=y+25 ,y4=y+4;
+            strcpy(nameplayer2,"H U M A N");
+            strcpy(nameplayer3,"H U M A N");
+            strcpy(nameplayer4,"H U M A N");
 
-    }
+            system("cls");
+            setTextColor (7,0) ;
+            gotoxy(2,51);
+            printf("Q U O R I D O R   F U M!");
+            menu_frame(4,36);
+            gotoxy(6,43);
+            printf(" * you can change the type of player ");
+            gotoxy(7,52);
+            printf(" by pressing Enter !");
 
+
+            menu_opponent(x,y);  gotoxy(x+2,y+4);printf("H U M A N");
+            menu_opponent(x,y+21);   gotoxy(x+2,y2); printf("%s",nameplayer2);
+            menu_opponent(x+6,y+21);   gotoxy(x+8,y3); printf("%s",nameplayer3);
+            menu_opponent(x+6,y);  gotoxy(x+8,y4); printf("%s",nameplayer4);
+            menu(22,y+8);   gotoxy(23,y+11); printf("Back");
+            menu(22,y+20);   gotoxy(23,y+23); printf("Play");
+
+            while(swplay==1){
+                while(1){
+                    option_direction = getch() ;
+                    if(option_direction==13){ break;}
+                    while( option_direction != 224){ //check true button
+                             option_direction = getch();
+                    }
+                    option_direction = getch() ;
+                    t++;
+                    if(option_direction==72){
+                        if(typefourplayer==1){t=6;}
+                        if(typefourplayer==2){t=1;}
+                        if(typefourplayer==3){t=2;}
+                        if(typefourplayer==4){t=3;}
+                        if(typefourplayer==5){t=4;}
+                        if(typefourplayer==6){t=5;}
+                    }
+                    colorscreen=0;
+                    if(t==1){
+                        setTextColor (7,colorscreen) ;
+                        menu_opponent(x,y+21);   gotoxy(x+2,y2);printf("%s",nameplayer2);
+                        menu(22,y+20);   gotoxy(23,y+23); printf("Play");
+                        setTextColor (4,colorscreen) ;
+                        menu_opponent(x,y);  gotoxy(x+2,y+4);printf("H U M A N");
+                        typefourplayer=1;
+                    }
+                    if(t==2){
+                        setTextColor (7,colorscreen) ;
+                         menu_opponent(x,y);  gotoxy(x+2,y+4);printf("H U M A N");
+                        menu_opponent(x+6,y+21);   gotoxy(x+8,y3);printf("%s",nameplayer3);
+                        setTextColor (6,colorscreen) ;
+                        menu_opponent(x,y+21);   gotoxy(x+2,y2);printf("%s",nameplayer2);
+                        typefourplayer=2;
+                    }
+                    if(t==3){
+                        setTextColor (7,colorscreen) ;
+                        menu_opponent(x,y+21);   gotoxy(x+2,y2);printf("%s",nameplayer2);
+                        menu_opponent(x+6,y);  gotoxy(x+8,y4);printf("%s",nameplayer4);
+                        setTextColor (3,colorscreen) ;
+                        menu_opponent(x+6,y+21);   gotoxy(x+8,y3);printf("%s",nameplayer3);
+                        typefourplayer=3;
+                    }
+                    if(t==4){
+                        setTextColor (7,colorscreen) ;
+                        menu_opponent(x+6,y+21);   gotoxy(x+8,y3);printf("%s",nameplayer3);
+                        menu(22,y+8);   gotoxy(23,y+11); printf("Back");
+                        setTextColor (5,colorscreen) ;
+                        menu_opponent(x+6,y);  gotoxy(x+8,y4);printf("%s",nameplayer4);
+                        typefourplayer=4;
+                    }
+                    if(t==5){
+                        setTextColor (7,colorscreen) ;
+                        menu_opponent(x+6,y);  gotoxy(x+8,y4);printf("%s",nameplayer4);
+                        menu(22,y+20);   gotoxy(23,y+23); printf("Play");
+                        setTextColor (1,colorscreen) ;
+                        menu(22,y+8);   gotoxy(23,y+11); printf("Back");
+                        typefourplayer=5;
+                    }
+                    if(t==6){
+                        setTextColor (7,colorscreen) ;
+                        menu_opponent(x,y);  gotoxy(x+2,y+4);printf("H U M A N");
+                        menu(22,y+8);   gotoxy(23,y+11); printf("Back");
+                        setTextColor (2,colorscreen) ;
+                        menu(22,y+20);   gotoxy(23,y+23); printf("Play");
+                        typefourplayer=6;
+                    }
+                    if(t==6){
+                        t=0;
+                    }
+                }
+               if(typefourplayer==2){
+                     if(option_direction==13){
+                        if(strcmp(nameplayer2,"C O M P U T E R")==0){
+                            strcpy(nameplayer2,"   H U M A N   ");
+                            typeplayer2=1;
+                        }else{
+                            strcpy(nameplayer2,"C O M P U T E R");
+                            typeplayer2=2;
+                        }
+                         y2=y+22;
+                        menu_opponent(x,y+21);gotoxy(x+2,y2);printf("%s",nameplayer2);
+
+                     }
+                }if(typefourplayer==3){
+                     if(option_direction==13){
+                        if(strcmp(nameplayer3,"C O M P U T E R")==0){
+                           strcpy(nameplayer3,"   H U M A N   ");
+                            typeplayer3=1;
+                        }else{
+                            strcpy(nameplayer3,"C O M P U T E R");
+                            typeplayer3=2;
+                        }
+                        y3=y+22;
+                        menu_opponent(x+6,y+21);gotoxy(x+8,y3);printf("%s",nameplayer3);
+                     }
+                }if(typefourplayer==4){
+                     if(option_direction==13){
+                        if(strcmp(nameplayer4,"C O M P U T E R")==0){
+                            strcpy(nameplayer4,"   H U M A N   ");
+                            typeplayer4=1;
+                        }else{
+                            strcpy(nameplayer4,"C O M P U T E R");
+                            typeplayer4=2;
+                        }
+                        y4=y+1;
+                        menu_opponent(x+6,y);gotoxy(x+8,y4);printf("%s",nameplayer4);
+                     }
+                }if(typefourplayer==5){
+                    setTextColor (7,0) ;
+                    system ("cls") ;
+                    main();
+                }if(typefourplayer==6){
+                    Sw_four_playergame=0;
+                    swplay=0;
+                }
+            }
+    }else{
+       setTextColor (7,0) ;
+       system ("cls") ;
+       main();
+    }
+    }else{
+       setTextColor (7,0) ;
+       system ("cls") ;
+       main();
+    }
+    colorscreen=7;
+    setTextColor (0,colorscreen) ;
+    system ("cls") ;
+    setTextColor (0,colorscreen) ;
+    load=0;
+    }
     if(type==2){
       load=1;
       FILE*gamefile;
       gamefile=fopen("Quoridor.qu","rb");
-
       fread(&infoplayer1,sizeof(struct players_information),1,gamefile);
       strcpy(name_player_1,infoplayer1.name);
       beat1=infoplayer1.beat;
@@ -262,54 +451,11 @@ void general_print()
      return 1;
 
     }
-<<<<<<< HEAD
-    setTextColor(0, 7);
-    system ("cls") ;
-    gotoxy (15, 43) ;
-    sleep (100) ;
-    setTextColor (0, 3) ;
-    Design_color_screen() ;
-    system ("cls") ;
-    gotoxy (15, 47) ;
-    setTextColor (34, colorscreen) ;
-    setTextColor (0, 7) ;
-    Design_color_screen() ;
-    system ("cls") ;
-    gotoxy (15, 47) ;
-    printf ("Enter the size of the GAME BOARD: ") ;
-    while(1)
-    {
-        scanf ("%d", &size_board) ;
-        if ( size_board > 15 || size_board <= 0 )
-=======
     if(type==3){
-        setTextColor(0, 7);
-        system ("cls") ;
-        gotoxy (15, 43) ;
-        sleep (100) ;
-        setTextColor (0, 7) ;
-        Design_color_screen() ;
-        system ("cls") ;
-        gotoxy (15, 47) ;
-
-        printf ("Enter the size of the GAME BOARD: ") ;
-        while(1)
->>>>>>> d6b70ab19f65a62790f12e634d12e51e33c5f568
-        {
-            scanf ("%d", &size_board) ;
-            if ( size_board > 15 || size_board <= 0 )
-            {
-                beep (500,100) ;
-                system ("cls") ;
-                gotoxy (15, 70) ;
-                printf ("WRONG!") ;
-                sleep (800) ;
-                system ("cls") ;
-                gotoxy (15, 47) ;
-                printf ("Enter the size of the GAME BOARD: ") ;
-            }
-            else break ;
-        }
+        system("cls");
+        setting_player();
     }
 
 }
+#endif // general_print_board
+
