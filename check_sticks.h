@@ -32,7 +32,7 @@ int DFS_Players(int  Row, int Column, int RowDestination, int ColumnDestination)
            house.coordinatesNo++;
             //checking the right neighborhood
             if(board[RowDestination][ColumnDestination+3] == 7 || board[RowDestination][ColumnDestination+4] == 1000 || board[RowDestination][ColumnDestination+4] == 2000 ){
-                 if((board[RowDestination-2][ColumnDestination] == 1000 || board[RowDestination-2][ColumnDestination] == 2000) && (board[RowDestination+2][ColumnDestination] == 1000 || board[RowDestination+2][ColumnDestination] == 2000)){
+                 if((board[RowDestination-2][ColumnDestination] == 1000 || board[RowDestination-2][ColumnDestination] == 2000) && (board[RowDestination+2][ColumnDestination] == 1000 || board[RowDestination+2][ColumnDestination] == 2000)&& (board[RowDestination][ColumnDestination-4] == 1000 || board[RowDestination][ColumnDestination-4] == 2000)){
                     if(lastrow!=1)return 0; //if it has no way to move
                  }
             }
@@ -41,7 +41,7 @@ int DFS_Players(int  Row, int Column, int RowDestination, int ColumnDestination)
             }
             //checking the left neighborhood
             if(board[RowDestination][ColumnDestination-3] == 7 || board[RowDestination][ColumnDestination-4] == 1000 || board[RowDestination][ColumnDestination-4] == 2000){
-                 if((board[RowDestination-2][ColumnDestination] == 1000 || board[RowDestination-2][ColumnDestination] == 2000)&&(board[RowDestination+2][ColumnDestination] == 1000||board[RowDestination+2][ColumnDestination] == 2000)){
+                 if((board[RowDestination-2][ColumnDestination] == 1000 || board[RowDestination-2][ColumnDestination] == 2000)&&(board[RowDestination+2][ColumnDestination] == 1000||board[RowDestination+2][ColumnDestination] == 2000)&&(board[RowDestination][ColumnDestination+4] == 1000||board[RowDestination+2][ColumnDestination+4] == 2000)){
                      if(lastrow!=1) return 0;//if it has no way to move
                 }
             }
@@ -94,7 +94,7 @@ int CheckSticksPlayers(char TypeStick){
          verticalsticks=verticalsticks2;
 	}
 	///////////////////////////////////////////////////////////////////Check number of sticks
-	if(turn != 3 && turn != 4){
+	if(typeplayer2==0 && spell != 0){
             if(TypeStick=='H' || TypeStick=='h'  ){
                 if(horizontalsticks==0){
                       setTextColor(12, colorscreen);
@@ -113,13 +113,9 @@ int CheckSticksPlayers(char TypeStick){
                 }
             }
 	}
-	if(TypeStick == 'H' || TypeStick == 'h'  ){
-        horizontalsticks--;
-	}else{
-        verticalsticks--;
-	}
+
 	////////////////////////////////////////////////////////////
-	if(turn != 3 && turn != 4){
+	if(typeplayer2!=1 && spell!=0){
 	   printf("\nEnter the name of the line where you want the stick to be placed!");
        rowlocation=getch();
 	   while(rowlocation<'A' || (rowlocation>'A'+size_board-2 && rowlocation<'a') || rowlocation>'a'+size_board-2){
@@ -136,12 +132,14 @@ int CheckSticksPlayers(char TypeStick){
     if(rowlocation>='a') rowlocation-=32;
     if(columnlocation >= 'a') columnlocation -= 32;
     ///////////////////////////////convert the position of stick to org coord
-    coordRow=((int)rowlocation-64)*4;
-	coordcolumn=((int)columnlocation-64)*8-1;
+    if(spell!=0){
+        coordRow=((int)rowlocation-64)*4;
+        coordcolumn=((int)columnlocation-64)*8-1;
+    }
     ////////////////////////////////////check full
     if(TypeStick == 'H' || TypeStick == 'h'){
         if(board[coordRow][coordcolumn] == 1000 || board[coordRow][coordcolumn+3] == 1000 || board[coordRow][coordcolumn-3] == 1000 || board[coordRow][coordcolumn] == 2000 || board[coordRow][coordcolumn+3] == 2000 || board[coordRow][coordcolumn-3] == 2000){
-            if( turn != 3 && turn != 4){
+            if( typeplayer2==0 && spell!=0){
                 gotoxy(x,44);
                setTextColor(12, colorscreen);
                printf("(%c,%c) is full!",rowlocation,columnlocation);
@@ -151,7 +149,7 @@ int CheckSticksPlayers(char TypeStick){
         }
     }
     else if(board[coordRow][coordcolumn] == 1000 || board[coordRow-2][coordcolumn] == 1000 || board[coordRow+2][coordcolumn] == 1000 || board[coordRow][coordcolumn] == 2000 || board[coordRow-2][coordcolumn]==2000 || board[coordRow+2][coordcolumn] == 2000){
-            if( turn != 3 && turn != 4){
+            if( typeplayer2==0 && spell!=0){
                setTextColor(12, colorscreen);
                gotoxy(x,44);
                printf("(%c,%c) is full!",rowlocation,columnlocation);
@@ -193,8 +191,7 @@ int CheckSticksPlayers(char TypeStick){
         }else{
             ansDFSplayer1=0;
         }
-        printf("%d", ansDFSplayer1);
-        sleep(600);
+
        ///////////////////////////////////////////// find a neighborhood player 2
         if(board[row2-2][column2]!=1000 && board[row2-2][column2]!=8 && board[row2-2][column2]!=2000){ //up
             RowDestination=row2-4;
@@ -219,12 +216,11 @@ int CheckSticksPlayers(char TypeStick){
         }else{
             ansDFSplayer2=0;
         }
-        printf("%d", ansDFSplayer2);
-        sleep(600);
+
         lastrow = 0 ;
         ///////////////////////////////////////////////////// close roads
 		if(ansDFSplayer1 == 0 || ansDFSplayer2 == 0){
-            if( turn != 3  && turn != 4){
+            if(typeplayer2==0 && spell!=0){
 			   gotoxy(x,35);
 			   setTextColor(12, colorscreen);
 			   printf("By putting stick in (%c,%c) you will close all the roads!",rowlocation,columnlocation);
@@ -245,7 +241,7 @@ int CheckSticksPlayers(char TypeStick){
 		}
 		if(ansDFSplayer1 == 1 && ansDFSplayer2 == 1){ //ok all of things
         /////////
-          if(turn == 4){
+          if(Sw_rand_putstick==1 && turn !=1 ){
             if(TypeStick == 'H' || TypeStick == 'h' ){
                 for(i = coordcolumn-6; i <= coordcolumn+6; i++){
                     board[coordRow][i]=0;
@@ -257,13 +253,13 @@ int CheckSticksPlayers(char TypeStick){
             }
           }
         /////////
-          else if(turn == 1){
+        else if(turn == 1){
               if(TypeStick == 'H' || TypeStick == 'h'){ horizontalsticks1--; stick_movement_h_full[(int)rowlocation-65][(int)columnlocation-65] = 2; stick_movement_v_full[(int)rowlocation-65][(int)columnlocation-65] = 2; stick_movement_h_full[(int)rowlocation-65][(int)columnlocation-65-1] = 2;
               stick_movement_h_full[rowlocation-65][columnlocation-65+1] = 2;}
              else {verticalsticks1--; stick_movement_v_full[(int)rowlocation-65][(int)columnlocation-65] = 2; stick_movement_h_full[(int)rowlocation-65][(int)columnlocation-65] = 2; stick_movement_v_full[(int)rowlocation-65-1][(int)columnlocation-65] = 2; stick_movement_v_full[(int)rowlocation-65+1][(int)columnlocation-65] = 2;}
          }
         ////////
-         else{
+        else{
             if(TypeStick == 'H' || TypeStick == 'h') {horizontalsticks2--; stick_movement_h_full[(int)rowlocation-65][(int)columnlocation-65] = 2; stick_movement_v_full[(int)rowlocation-65][(int)columnlocation-65] = 2; stick_movement_h_full[(int)rowlocation-65][(int)columnlocation-65-1] = 2;
             stick_movement_h_full[rowlocation-65][columnlocation-65+1] = 2;}
             else {verticalsticks2--; stick_movement_v_full[(int)rowlocation-65][(int)columnlocation-65] = 2; stick_movement_h_full[(int)rowlocation-65][(int)columnlocation-65] = 2; stick_movement_v_full[(int)rowlocation-65-1][(int)columnlocation-65] = 2; stick_movement_v_full[(int)rowlocation-65+1][(int)columnlocation-65] = 2;}
