@@ -24,6 +24,7 @@ void general_print()
     printslowly( welcome,18,48) ;
     sleep (150) ;*/
     int t=0,type,x,y,typeplayer,typelevel,typemembers,typefourplayer,swplay=1;
+    Sw_four_playergame=1;
     char nameplayer2[20],nameplayer3[20],nameplayer4[20];
     gotoxy(2,50);
     printf("Q U O R I D O R   F U M!");
@@ -186,12 +187,17 @@ void general_print()
           }
 
           if(typelevel==2){
+            strcpy(name_player_2,"computer");
             typeplayer2=1; //level 1
+            Sw_four_playergame=1;
           }else if(typelevel==1){
+            strcpy(name_player_2,"computer");
             typeplayer2=2; //level 2
+            Sw_four_playergame=1;
           }else{
             setTextColor (7,0) ;
             system ("cls") ;
+            load=0;
             main();
           }
     }else if(typeplayer==1){ //play with sveral members
@@ -246,7 +252,9 @@ void general_print()
             }
         }
         if(typemembers==2){
+            strcpy(name_player_2,"TWO");
             typeplayer2=0;
+            Sw_four_playergame=1;
         }
         else if(typemembers==1){
             x=10;y=44;t=0;
@@ -347,10 +355,10 @@ void general_print()
                      if(option_direction==13){
                         if(strcmp(nameplayer2,"C O M P U T E R")==0){
                             strcpy(nameplayer2,"   H U M A N   ");
-                            typeplayer2=1;
+                            typeplayer2=0;
                         }else{
                             strcpy(nameplayer2,"C O M P U T E R");
-                            typeplayer2=2;
+                            typeplayer2=1;
                         }
                          y2=y+22;
                         menu_opponent(x,y+21);gotoxy(x+2,y2);printf("%s",nameplayer2);
@@ -360,10 +368,10 @@ void general_print()
                      if(option_direction==13){
                         if(strcmp(nameplayer3,"C O M P U T E R")==0){
                            strcpy(nameplayer3,"   H U M A N   ");
-                            typeplayer3=1;
+                            typeplayer3=0;
                         }else{
                             strcpy(nameplayer3,"C O M P U T E R");
-                            typeplayer3=2;
+                            typeplayer3=1;
                         }
                         y3=y+22;
                         menu_opponent(x+6,y+21);gotoxy(x+8,y3);printf("%s",nameplayer3);
@@ -372,10 +380,10 @@ void general_print()
                      if(option_direction==13){
                         if(strcmp(nameplayer4,"C O M P U T E R")==0){
                             strcpy(nameplayer4,"   H U M A N   ");
-                            typeplayer4=1;
+                            typeplayer4=0;
                         }else{
                             strcpy(nameplayer4,"C O M P U T E R");
-                            typeplayer4=2;
+                            typeplayer4=1;
                         }
                         y4=y+1;
                         menu_opponent(x+6,y);gotoxy(x+8,y4);printf("%s",nameplayer4);
@@ -383,30 +391,41 @@ void general_print()
                 }if(typefourplayer==5){
                     setTextColor (7,0) ;
                     system ("cls") ;
-                    typeplayer2=2;
+                    load=0;
                     main();
                 }if(typefourplayer==6){
+
+                    if(strcmp(nameplayer2,"C O M P U T E R")==0) {strcpy(name_player_2,"computer");}
+                    else {strcpy(name_player_2,"TWO");}
+                    if(strcmp(nameplayer3,"C O M P U T E R")==0) {strcpy(name_player_3,"computer");}
+                    else {strcpy(name_player_3,"THREE");}
+                    if(strcmp(nameplayer4,"C O M P U T E R")==0) {strcpy(name_player_4,"computer");}
+                    else {strcpy(name_player_4,"FOUR");}
+
+                    Sw_four_playergame=0;
                     swplay=0;
                 }
             }
     }else{
        setTextColor (7,0) ;
        system ("cls") ;
+       load=0;
        main();
     }
     }else{
        setTextColor (7,0) ;
        system ("cls") ;
+       load=0;
        main();
     }
     colorscreen=7;
     setTextColor (0,colorscreen) ;
     system ("cls") ;
     setTextColor (0,colorscreen) ;
-    load=0;
+    load=1;
     }
     if(type==2){
-      load=1;
+      load=0;
       FILE*gamefile;
       gamefile=fopen("Quoridor.qu","rb");
       fread(&infoplayer1,sizeof(struct players_information),1,gamefile);
@@ -417,6 +436,7 @@ void general_print()
       row1=infoplayer1.row;
       column1=infoplayer1.column;
       turn=infoplayer1.turn;
+      Sw_four_playergame=infoplayer1.Sw_four_playergame;
       primarycolumn1=infoplayer1.primarycolumn;
       primaryrow1=infoplayer1.primaryrow;
       primaryhorizontalsticks1=infoplayer1.primaryhorizontalstick;
@@ -434,6 +454,32 @@ void general_print()
       primaryhorizontalsticks2=infoplayer2.primaryhorizontalstick;
       primaryverticalsticks2=infoplayer2.primaryverticalstick;
 
+    if(Sw_four_playergame==0){
+          fread(&infoplayer3,sizeof(struct players_information),1,gamefile);
+          strcpy(name_player_3,infoplayer3.name);
+          beat3=infoplayer3.beat;
+          verticalsticks3=infoplayer3.verticalstick;
+          horizontalsticks3=infoplayer3.horizontalstick;
+          row3=infoplayer3.row;
+          column3=infoplayer3.column;
+          typeplayer3=infoplayer3.typeplayer;
+          primaryrow3=infoplayer3.primaryrow;
+          primaryhorizontalsticks3=infoplayer3.primaryhorizontalstick;
+          primaryverticalsticks3=infoplayer3.primaryverticalstick;
+
+          fread(&infoplayer4,sizeof(struct players_information),1,gamefile);
+          strcpy(name_player_4,infoplayer4.name);
+          beat4=infoplayer4.beat;
+          verticalsticks4=infoplayer4.verticalstick;
+          horizontalsticks4=infoplayer4.horizontalstick;
+          row4=infoplayer4.row;
+          column4=infoplayer4.column;
+          typeplayer4=infoplayer4.typeplayer;
+          primaryrow4=infoplayer4.primaryrow;
+          primarycolumn4=infoplayer4.primarycolumn;
+          primaryhorizontalsticks4=infoplayer4.primaryhorizontalstick;
+          primaryverticalsticks4=infoplayer4.primaryverticalstick;
+    }
       fread(&infoboard,sizeof(struct board_information),1,gamefile);
       colorscreen=infoboard.colorscreen;
       size_board=infoboard.size_board;
@@ -447,9 +493,6 @@ void general_print()
         }
      }
      fclose(gamefile);
-     system("cls");
-     return 1;
-
     }
     if(type==3){
         system("cls");
@@ -458,3 +501,4 @@ void general_print()
 
 }
 #endif // general_print_board
+
