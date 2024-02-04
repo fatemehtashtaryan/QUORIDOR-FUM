@@ -1,7 +1,11 @@
 #include "subcodes.h"
 #include "checking_move.h"
 #include "check_sticks.h"
+<<<<<<< HEAD
 #include "menu.h"
+=======
+#include "gameboard_menu.h"
+>>>>>>> a1e9cdaf4d0f8b298729b8ed35ad0696338b265d
 
 
 int move_player;
@@ -22,6 +26,10 @@ int savegame(){
      infoplayer1.row=row1;
      infoplayer1.column=column1;
      infoplayer1.turn=turn;
+<<<<<<< HEAD
+=======
+     infoplayer1.Sw_four_playergame=Sw_four_playergame;
+>>>>>>> a1e9cdaf4d0f8b298729b8ed35ad0696338b265d
      infoplayer1.primarycolumn=primarycolumn1;
      infoplayer1.primaryrow=primaryrow1;
      fwrite(&infoplayer1,sizeof(struct players_information),1,gamefile);
@@ -43,6 +51,7 @@ int savegame(){
          infoplayer3.beat=beat3;
          infoplayer3.verticalstick=verticalsticks3;
          infoplayer3.horizontalstick=horizontalsticks3;
+<<<<<<< HEAD
          infoplayer3.primaryverticalstick=primaryverticalsticks3;
          infoplayer3.primaryhorizontalstick=primaryhorizontalsticks3;
          infoplayer3.row=row3;
@@ -52,21 +61,44 @@ int savegame(){
          infoplayer3.primaryrow=primaryrow3;
          fwrite(&infoplayer3,sizeof(struct players_information),1,gamefile);
 
+=======
+         infoplayer3.row=row3;
+         infoplayer3.column=column3;
+         infoplayer3.typeplayer=typeplayer3;
+         infoplayer3.primaryrow=primaryrow3;
+         infoplayer3.primaryverticalstick=primaryverticalsticks3;
+         infoplayer3.primaryhorizontalstick=primaryhorizontalsticks3;
+
+         fwrite(&infoplayer3,sizeof(struct players_information),1,gamefile);
+>>>>>>> a1e9cdaf4d0f8b298729b8ed35ad0696338b265d
          strcpy(infoplayer4.name,name_player_4);
          infoplayer4.beat=beat4;
          infoplayer4.verticalstick=verticalsticks4;
          infoplayer4.horizontalstick=horizontalsticks4;
+<<<<<<< HEAD
          infoplayer4.primaryverticalstick=primaryverticalsticks4;
          infoplayer4.primaryhorizontalstick=primaryhorizontalsticks4;
          infoplayer4.row=row4;
          infoplayer4.column=column4;
          infoplayer4.typeplayer=typeplayer4;
          infoplayer4.primarycolumn=primarycolumn4;
+=======
+         infoplayer4.row=row4;
+         infoplayer4.column=column4;
+         infoplayer4.typeplayer=typeplayer4;
+         infoplayer4.primaryrow=primaryrow4;
+         infoplayer4.primarycolumn=primarycolumn4;
+         infoplayer4.primaryverticalstick=primaryverticalsticks4;
+         infoplayer4.primaryhorizontalstick=primaryhorizontalsticks4;
+>>>>>>> a1e9cdaf4d0f8b298729b8ed35ad0696338b265d
          fwrite(&infoplayer4,sizeof(struct players_information),1,gamefile);
      }
      infoboard.colorscreen=colorscreen;
      infoboard.size_board=size_board;
+<<<<<<< HEAD
      infoboard.Sw_four_playergame=Sw_four_playergame;
+=======
+>>>>>>> a1e9cdaf4d0f8b298729b8ed35ad0696338b265d
      fwrite(&infoboard,sizeof(struct board_information),1,gamefile);
 
      for(int i=0 ; i<=TotalRows ; i++ ){
@@ -225,8 +257,17 @@ int move_play(){
    if(type==1){
       if(turn==1){
         swmove1=1;
+<<<<<<< HEAD
       }else{
           swmove2=1;
+=======
+      }else if(turn==2){
+          swmove2=1;
+      }else if(turn==3){
+          swmove3=1;
+      }else if(turn==4){
+          swmove4=1;
+>>>>>>> a1e9cdaf4d0f8b298729b8ed35ad0696338b265d
       }
       setTextColor (4,colorscreen) ;
       menu(x,y);    gotoxy(x+1,y+3);   printf("move");
@@ -246,8 +287,17 @@ int move_play(){
    else if(type==2){
      if(turn==1){
         swstick1=1;
+<<<<<<< HEAD
       }else{
         swstick2=1;
+=======
+      }else if(turn==2){
+        swstick2=1;
+      }else if(turn==3){
+        swstick3=1;
+      }else if(turn==4){
+        swstick4=1;
+>>>>>>> a1e9cdaf4d0f8b298729b8ed35ad0696338b265d
       }
      gotoxy(x+4,y+10);
      printf("Type Stick? Horizontal = H / Vertical = V");
@@ -341,7 +391,11 @@ int move_play(){
       setTextColor(7,0);
       system("cls");
       setTextColor(7,0);
+<<<<<<< HEAD
       for(Row = 0; Row <= TotalRows ; Row++){
+=======
+    /*  for(Row = 0; Row <= TotalRows ; Row++){
+>>>>>>> a1e9cdaf4d0f8b298729b8ed35ad0696338b265d
          for(Column = 0; Column <= TotalColumn; Column++){
              board[Row][Column]=0;
             }
@@ -353,13 +407,21 @@ int move_play(){
         verticalsticks2=primaryverticalsticks2;
         horizontalsticks2=primaryhorizontalsticks2;
         column2=primarycolumn2;
+<<<<<<< HEAD
         row2=primaryrow2;
+=======
+        row2=primaryrow2;*/
+>>>>>>> a1e9cdaf4d0f8b298729b8ed35ad0696338b265d
       main();
     }else{
      setTextColor(7,0);
      system("cls");
      setTextColor(7,0);
+<<<<<<< HEAD
       for(Row = 0; Row <= TotalRows ; Row++){
+=======
+      /*for(Row = 0; Row <= TotalRows ; Row++){
+>>>>>>> a1e9cdaf4d0f8b298729b8ed35ad0696338b265d
          for(Column = 0; Column <= TotalColumn; Column++){
              board[Row][Column]=0;
             }
@@ -371,7 +433,11 @@ int move_play(){
         verticalsticks2=primaryverticalsticks2;
         horizontalsticks2=primaryhorizontalsticks2;
         column2=primarycolumn2;
+<<<<<<< HEAD
         row2=primaryrow2;
+=======
+        row2=primaryrow2;*/
+>>>>>>> a1e9cdaf4d0f8b298729b8ed35ad0696338b265d
         main();
     }
    }

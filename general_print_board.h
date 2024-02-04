@@ -187,9 +187,13 @@ void general_print()
           }
 
           if(typelevel==2){
+            strcpy(name_player_2,"computer");
             typeplayer2=1; //level 1
+            Sw_four_playergame=1;
           }else if(typelevel==1){
+            strcpy(name_player_2,"computer");
             typeplayer2=2; //level 2
+            Sw_four_playergame=1;
           }else{
             setTextColor (7,0) ;
             system ("cls") ;
@@ -248,7 +252,9 @@ void general_print()
             }
         }
         if(typemembers==2){
+            strcpy(name_player_2,"TWO");
             typeplayer2=0;
+            Sw_four_playergame=1;
         }
         else if(typemembers==1){
             x=10;y=44;t=0;
@@ -388,6 +394,17 @@ void general_print()
                     load=0;
                     main();
                 }if(typefourplayer==6){
+<<<<<<< HEAD
+=======
+
+                    if(strcmp(nameplayer2,"C O M P U T E R")==0) {strcpy(name_player_2,"computer");}
+                    else {strcpy(name_player_2,"TWO");}
+                    if(strcmp(nameplayer3,"C O M P U T E R")==0) {strcpy(name_player_3,"computer");}
+                    else {strcpy(name_player_3,"THREE");}
+                    if(strcmp(nameplayer4,"C O M P U T E R")==0) {strcpy(name_player_4,"computer");}
+                    else {strcpy(name_player_4,"FOUR");}
+
+>>>>>>> a1e9cdaf4d0f8b298729b8ed35ad0696338b265d
                     Sw_four_playergame=0;
                     swplay=0;
                 }
@@ -408,6 +425,7 @@ void general_print()
     setTextColor (0,colorscreen) ;
     system ("cls") ;
     setTextColor (0,colorscreen) ;
+<<<<<<< HEAD
     load=0;
     /*verticalsticks1=primaryverticalsticks1;
     horizontalsticks1=primaryhorizontalsticks1;
@@ -417,9 +435,12 @@ void general_print()
     horizontalsticks2=primaryhorizontalsticks2;
     column2=primarycolumn2;
     row2=primaryrow2;*/
+=======
+    load=1;
+>>>>>>> a1e9cdaf4d0f8b298729b8ed35ad0696338b265d
     }
     if(type==2){
-      load=1;
+      load=0;
       FILE*gamefile;
       gamefile=fopen("Quoridor.qu","rb");
       fread(&infoplayer1,sizeof(struct players_information),1,gamefile);
@@ -430,6 +451,7 @@ void general_print()
       row1=infoplayer1.row;
       column1=infoplayer1.column;
       turn=infoplayer1.turn;
+      Sw_four_playergame=infoplayer1.Sw_four_playergame;
       primarycolumn1=infoplayer1.primarycolumn;
       primaryrow1=infoplayer1.primaryrow;
       primaryhorizontalsticks1=infoplayer1.primaryhorizontalstick;
@@ -447,6 +469,32 @@ void general_print()
       primaryhorizontalsticks2=infoplayer2.primaryhorizontalstick;
       primaryverticalsticks2=infoplayer2.primaryverticalstick;
 
+    if(Sw_four_playergame==0){
+          fread(&infoplayer3,sizeof(struct players_information),1,gamefile);
+          strcpy(name_player_3,infoplayer3.name);
+          beat3=infoplayer3.beat;
+          verticalsticks3=infoplayer3.verticalstick;
+          horizontalsticks3=infoplayer3.horizontalstick;
+          row3=infoplayer3.row;
+          column3=infoplayer3.column;
+          typeplayer3=infoplayer3.typeplayer;
+          primaryrow3=infoplayer3.primaryrow;
+          primaryhorizontalsticks3=infoplayer3.primaryhorizontalstick;
+          primaryverticalsticks3=infoplayer3.primaryverticalstick;
+
+          fread(&infoplayer4,sizeof(struct players_information),1,gamefile);
+          strcpy(name_player_4,infoplayer4.name);
+          beat4=infoplayer4.beat;
+          verticalsticks4=infoplayer4.verticalstick;
+          horizontalsticks4=infoplayer4.horizontalstick;
+          row4=infoplayer4.row;
+          column4=infoplayer4.column;
+          typeplayer4=infoplayer4.typeplayer;
+          primaryrow4=infoplayer4.primaryrow;
+          primarycolumn4=infoplayer4.primarycolumn;
+          primaryhorizontalsticks4=infoplayer4.primaryhorizontalstick;
+          primaryverticalsticks4=infoplayer4.primaryverticalstick;
+    }
       fread(&infoboard,sizeof(struct board_information),1,gamefile);
       colorscreen=infoboard.colorscreen;
       size_board=infoboard.size_board;
@@ -486,9 +534,6 @@ void general_print()
           primaryverticalsticks4=infoplayer4.primaryverticalstick;
      }
      fclose(gamefile);
-     system("cls");
-     return 1;
-
     }
     if(type==3){
         system("cls");
@@ -497,3 +542,4 @@ void general_print()
 
 }
 #endif // general_print_board
+
