@@ -6,6 +6,8 @@
 #include "question_player.h"
 #include "general_print_board.h"
 
+//This file contains setting page : players information, color screen, size board setting;
+
 int setting_shape(int x,int y, int n){
      int h=1, counterrow, countercolumn;
      gotoxy(x, y) ;
@@ -186,32 +188,32 @@ int setting_player(){
                 number=0;
           }
         }
-         if(type==1){
+         if(type==1){//getting player one information
             system("cls");
             question_boardplayer1();
          }
-         else if (type==2) {
+         else if (type==2) {//getting player two information
              system("cls");
              question_boardplayer2();
          }
-         else if(type==3){
+         else if(type==3){//getting player three information
              system("cls");
              question_boardplayer3();
          }
-         else if(type==4){
+         else if(type==4){//getting player four information
              system("cls");
              question_boardplayer4();
          }
-         else if(type ==5){
+         else if(type ==5){//setting color screen
              system("cls");
              Design_color_screen();
          }
-         else if(type == 6){
+         else if(type == 6){//setting size board
             system("cls");
             sizeboard();
             row1=size_board*4-2;
          }
-         else {
+         else {//go to first page menu
             setTextColor (7,0);
             system("cls");
             sw_setting=1;
