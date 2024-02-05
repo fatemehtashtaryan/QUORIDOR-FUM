@@ -155,13 +155,13 @@ void question_boardplayer1()
            }
      }
       setting_direction=12;
-      if(type==1){
+      if(type==1){//getting name player
         gotoxy(9, 65);
         printf(" ");
         setTextColor (11,0);
         gets(name_player_1);
       }
-     if(type==2){
+     if(type==2){//getting and checking beat
         gotoxy(13, 83);
         printf(" ");
         setTextColor (4,0);
@@ -177,7 +177,7 @@ void question_boardplayer1()
           else beat1 = beat1_2;
           getch();
              }
-        if(type == 3){
+        if(type == 3){//getting column and comparing with size_board
             setTextColor (6,0);
             units_digit_size_board=size_board%10+'0';
              if(size_board >= 10)
@@ -213,9 +213,11 @@ void question_boardplayer1()
              units_digit_column1 -= '0';
              column1 = tens_digit_column1*10+units_digit_column1 ;
              column1=column1*8-5;//Changing the user's input number to the desired value
+             primarycolumn1=column1;
+             Sw_change1=0;
              getch();
             }
-       if(type == 4){
+       if(type == 4){//getting and checking vertical sticks
             setTextColor (2,0);
             verticalstick=getch();
             while(verticalstick>'9' || verticalstick<'1'){//check the number of verticalstick, It should not be more than 9
@@ -226,9 +228,10 @@ void question_boardplayer1()
             gotoxy(21, 79);
             printf(" ");
             printf("%d", verticalsticks1);
+            primaryverticalsticks1=verticalsticks1;
             getch();
             }
-      if(type == 5){
+      if(type == 5){//getting and checking horizontal sticks
           setTextColor (1,0);
           horizontalstick=getch();
          while(horizontalstick>'9' || horizontalstick<'1'){//check the number of horizontalstick, It should not be more than 9
@@ -239,9 +242,10 @@ void question_boardplayer1()
          gotoxy(25, 80);
          printf(" ");
          printf("%d", horizontalsticks1);
+         primaryhorizontalsticks1=horizontalsticks1;
          getch();
         }
-     if(type == 6){
+     if(type == 6){//go to the first page setting
         system("cls");
         setting_player();
         sw_setting = 1;
@@ -362,13 +366,13 @@ void question_boardplayer2(){
                 number =0;
                }
      }
-      if(type==1){
+      if(type==1){//getting name player
         gotoxy(9, 65);
         printf(" ");
         setTextColor (11,0);
         gets(name_player_2);
       }
-     if(type==2){
+     if(type==2){//getting and checking beat
         gotoxy(13, 83);
         printf(" ");
         setTextColor (4,0);
@@ -384,7 +388,7 @@ void question_boardplayer2(){
           else beat2 = beat2_2;
           getch();
         }
-    if(type == 3){
+    if(type == 3){//getting column and comparing with size_board
                 setTextColor (6,0);
                  units_digit_size_board=size_board%10+'0';
              if(size_board >= 10)
@@ -420,9 +424,11 @@ void question_boardplayer2(){
              units_digit_column2 -= '0';
              column2 = tens_digit_column2*10+units_digit_column2 ;
              column2=column2*8-5;//Changing the user's input number to the desired value
+             primarycolumn2=column2;
+             Sw_change2=0;
              getch();
         }
-       if(type == 4){
+       if(type == 4){//getting and checking vertical sticks
             setTextColor (2,0);
             verticalstick=getch();
             while(verticalstick>'9' || verticalstick<'1'){//check the number of verticalstick, It should not be more than 9
@@ -433,9 +439,10 @@ void question_boardplayer2(){
             gotoxy(21, 79);
             printf(" ");
             printf("%d", verticalsticks2);
+            primaryverticalsticks2=verticalsticks2;
             getch();
        }
-      if(type == 5){
+      if(type == 5){//getting and checking horizontal sticks
           setTextColor (1,0);
           horizontalstick=getch();
          while(horizontalstick>'9' || horizontalstick<'1'){//check the number of horizontalstick, It should not be more than 9
@@ -446,9 +453,10 @@ void question_boardplayer2(){
          gotoxy(25, 80);
          printf(" ");
          printf("%d", horizontalsticks2);
+         primaryhorizontalsticks2=horizontalsticks2;
          getch();
       }
-     if(type == 6){
+     if(type == 6){//go to the first page setting
         system("cls");
         setting_player();
         sw_setting = 1;
@@ -459,13 +467,13 @@ void question_boardplayer2(){
 void question_boardplayer3(){
       int sw = 0, number=0, type=1, sw_setting=0, n=1;
      char   beatnumber3, verticalstick, horizontalstick, setting_direction=12;
-     char units_digit_column3, tens_digit_column3, units_digit_size_board, tens_digit_size_board;
+     char units_digit_row3, tens_digit_row3, units_digit_size_board, tens_digit_size_board;
      setTextColor (7,0); gotoxy(2,49); printf("Q U O R I D O R   SETTING!");
      setTextColor (4,0); frame(3, 32, 56, 24);
      question_frame(4, 54, 12); gotoxy(5, 57); printf("PLAYER 3");
      setTextColor (7,0); question_frame(8, 45, 30); gotoxy(9, 47); printf("What is your name? ");
      question_frame(12, 35, 50); gotoxy(13, 37); printf("Enter your beat number(beat1= %c ; beat2= %c ): ", beat3_1, beat3_2);
-     question_frame(16, 35, 50); gotoxy(17, 37); printf("Enter the column of your PLAYER(like 01 / 12): ");
+     question_frame(16, 35, 50); gotoxy(17, 37); printf("Enter the row of your PLAYER(like 01 / 12): ");
      question_frame(20, 39, 43); gotoxy(21, 41); printf("Enter your number of vertical sticks: ");
      question_frame(24, 39, 43); gotoxy(25, 41); printf("Enter your number of horizontal sticks: ");
      question_frame(29, 56, 8); gotoxy(30, 59); printf("EXIT");
@@ -489,7 +497,7 @@ void question_boardplayer3(){
                 printf("Q U O R I D O R   SETTING!");
                 setTextColor (4,0); question_frame(4, 54, 12); gotoxy(5, 57); printf("PLAYER 3");
                 setTextColor (7,0); question_frame(12, 35, 50); gotoxy(13, 37); printf("Enter your beat number(beat1= %c ; beat2= %c ): ", beat3_1, beat3_2);
-                question_frame(16, 35, 50); gotoxy(17, 37); printf("Enter the column of your PLAYER(like 01 / 12): ");
+                question_frame(16, 35, 50); gotoxy(17, 37); printf("Enter the row of your PLAYER(like 01 / 12): ");
                question_frame(20, 39, 43); gotoxy(21, 41); printf("Enter your number of vertical sticks: ");
                question_frame(24, 39, 43); gotoxy(25, 41); printf("Enter your number of horizontal sticks: ");
                question_frame(29, 56, 8); gotoxy(30, 59); printf("EXIT");
@@ -503,7 +511,7 @@ void question_boardplayer3(){
                 printf("Q U O R I D O R   SETTING!");
                 setTextColor (4,0); question_frame(4, 54, 12); gotoxy(5, 57); printf("PLAYER 3");
                 setTextColor (7,0); question_frame(8, 45, 30); gotoxy(9, 47); printf("What is your name? ");
-                question_frame(16, 35, 50); gotoxy(17, 37); printf("Enter the column of your PLAYER(like 01 / 12): ");
+                question_frame(16, 35, 50); gotoxy(17, 37); printf("Enter the row of your PLAYER(like 01 / 12): ");
                 question_frame(20, 39, 43); gotoxy(21, 41); printf("Enter your number of vertical sticks: ");
                 question_frame(24, 39, 43); gotoxy(25, 41); printf("Enter your number of horizontal sticks: ");
                 question_frame(29, 56, 8); gotoxy(30, 59); printf("EXIT");
@@ -522,7 +530,7 @@ void question_boardplayer3(){
                 question_frame(24, 39, 43); gotoxy(25, 41); printf("Enter your number of horizontal sticks: ");
                 question_frame(29, 56, 8); gotoxy(30, 59); printf("EXIT");
                 setTextColor (6,0);
-                question_frame(16, 35, 50); gotoxy(17, 37); printf("Enter the column of your PLAYER(like 01 / 12): ");
+                question_frame(16, 35, 50); gotoxy(17, 37); printf("Enter the row of your PLAYER(like 01 / 12): ");
                 type =3;
              }
               if(number==4){
@@ -532,7 +540,7 @@ void question_boardplayer3(){
                 setTextColor (4,0); question_frame(4, 54, 12); gotoxy(5, 57); printf("PLAYER 3");
                 setTextColor (7,0); question_frame(8, 45, 30); gotoxy(9, 47); printf("What is your name? ");
                 question_frame(12, 35, 50); gotoxy(13, 37); printf("Enter your beat number(beat1= %c ; beat2= %c ): ", beat3_1, beat3_2);
-                question_frame(16, 35, 50); gotoxy(17, 37); printf("Enter the column of your PLAYER(like 01 / 12): ");
+                question_frame(16, 35, 50); gotoxy(17, 37); printf("Enter the row of your PLAYER(like 01 / 12): ");
                 question_frame(24, 39, 43); gotoxy(25, 41); printf("Enter your number of horizontal sticks: ");
                 question_frame(29, 56, 8); gotoxy(30, 59); printf("EXIT");
                 setTextColor (2,0);
@@ -546,7 +554,7 @@ void question_boardplayer3(){
                 setTextColor (4,0); question_frame(4, 54, 12); gotoxy(5, 57); printf("PLAYER 3");
                 setTextColor (7,0); question_frame(8, 45, 30); gotoxy(9, 47); printf("What is your name? ");
                 question_frame(12, 35, 50); gotoxy(13, 37); printf("Enter your beat number(beat1= %c ; beat2= %c ): ", beat3_1, beat3_2);
-                question_frame(16, 35, 50); gotoxy(17, 37); printf("Enter the column of your PLAYER(like 01 / 12): ");
+                question_frame(16, 35, 50); gotoxy(17, 37); printf("Enter the row of your PLAYER(like 01 / 12): ");
                 question_frame(20, 39, 43); gotoxy(21, 41); printf("Enter your number of vertical sticks: ");
                 question_frame(29, 56, 8); gotoxy(30, 59); printf("EXIT");
                 setTextColor (1,0);
@@ -560,7 +568,7 @@ void question_boardplayer3(){
                 setTextColor (4,0); question_frame(4, 54, 12); gotoxy(5, 57); printf("PLAYER 3");
                 setTextColor (7,0); question_frame(8, 45, 30); gotoxy(9, 47); printf("What is your name? ");
                 question_frame(12, 35, 50); gotoxy(13, 37); printf("Enter your beat number(beat1= %c ; beat2= %c ): ", beat3_1, beat3_2);
-                question_frame(16, 35, 50); gotoxy(17, 37); printf("Enter the column of your PLAYER(like 01 / 12): ");
+                question_frame(16, 35, 50); gotoxy(17, 37); printf("Enter the row of your PLAYER(like 01 / 12): ");
                 question_frame(20, 39, 43); gotoxy(21, 41); printf("Enter your number of vertical sticks: ");
                 question_frame(24, 39, 43); gotoxy(25, 41); printf("Enter your number of horizontal sticks: ");
                 setTextColor (5,0);
@@ -569,13 +577,13 @@ void question_boardplayer3(){
                 number =0;
                }
      }
-      if(type==1){
+      if(type==1){//getting name player
         gotoxy(9, 65);
         printf(" ");
         setTextColor (11,0);
         gets(name_player_3);
       }
-     if(type==2){
+     if(type==2){//getting and checking beat
         gotoxy(13, 83);
         printf(" ");
         setTextColor (4,0);
@@ -591,7 +599,7 @@ void question_boardplayer3(){
           else beat2 = beat3_2;
           getch();
         }
-    if(type == 3){
+     if(type == 3){//getting row and comparing with size_board
              setTextColor (6,0);
              units_digit_size_board=size_board%10+'0';
              if(size_board >= 10)
@@ -600,36 +608,38 @@ void question_boardplayer3(){
              }
              else tens_digit_size_board = '0';
              while(sw != 1){
-                   tens_digit_column3 = getch();
-                   units_digit_column3 = getch();
-                   while((tens_digit_column3 != '0' && tens_digit_column3 != '1') || (units_digit_column3 < '0' || units_digit_column3 > '9')){
+                   tens_digit_row3 = getch();
+                   units_digit_row3 = getch();
+                   while((tens_digit_row3 != '0' && tens_digit_row3 != '1') || (units_digit_row3 < '0' || units_digit_row3 > '9')){
                      beep(500,100);
-                     tens_digit_column3 = getch();
-                     units_digit_column3 = getch();
+                     tens_digit_row3 = getch();
+                     units_digit_row3 = getch();
                    }
-                    if(tens_digit_column3 == '0' && tens_digit_size_board == '0'){
-                      if(units_digit_column3 > units_digit_size_board) beep(500,100);
+                    if(tens_digit_row3 == '0' && tens_digit_size_board == '0'){
+                      if(units_digit_row3 > units_digit_size_board) beep(500,100);
                       else sw=1;
                    }
-                   else  if(tens_digit_column3 == '0' && tens_digit_size_board == '1')  sw = 1;
-                   else if(tens_digit_column3 == tens_digit_size_board){
-                      if(units_digit_column3 > units_digit_size_board) beep(500,100);
+                   else  if(tens_digit_row3 == '0' && tens_digit_size_board == '1')  sw = 1;
+                   else if(tens_digit_row3 == tens_digit_size_board){
+                      if(units_digit_row3 > units_digit_size_board) beep(500,100);
                       else sw = 1;
                   }
                   else beep(500,100);
                   if(sw == 1){
                     gotoxy(17, 83);
                     printf(" ");
-                    printf("%c%c", tens_digit_column3, units_digit_column3);
+                    printf("%c%c", tens_digit_row3, units_digit_row3);
                   }
              }
-             tens_digit_column3 -= '0';
-             units_digit_column3 -= '0';
-             column3 = tens_digit_column3*10+units_digit_column3 ;
-             column3=column3*8-5;//Changing the user's input number to the desired value
+             tens_digit_row3 -= '0';
+             units_digit_row3 -= '0';
+             row3 = tens_digit_row3*10+units_digit_row3 ;
+             row3=row3*4-2;//Changing the user's input number to the desired value
+             primaryrow3=row3;
+             Sw_change3=0;
              getch();
         }
-       if(type == 4){
+       if(type == 4){//getting and checking vertical sticks
             setTextColor (2,0);
             verticalstick=getch();
             while(verticalstick>'9' || verticalstick<'1'){//check the number of verticalstick, It should not be more than 9
@@ -640,9 +650,10 @@ void question_boardplayer3(){
             gotoxy(21, 79);
             printf(" ");
             printf("%d", verticalsticks3);
+            primaryverticalsticks3=verticalsticks3;
             getch();
        }
-      if(type == 5){
+      if(type == 5){//getting and checking horizontal sticks
           setTextColor (1,0);
           horizontalstick=getch();
          while(horizontalstick>'9' || horizontalstick<'1'){//check the number of horizontalstick, It should not be more than 9
@@ -653,9 +664,10 @@ void question_boardplayer3(){
          gotoxy(25, 80);
          printf(" ");
          printf("%d", horizontalsticks3);
+         primaryhorizontalsticks3=horizontalsticks3;
          getch();
       }
-     if(type == 6){
+     if(type == 6){//go to the first page setting
         system("cls");
         setting_player();
         sw_setting = 1;
@@ -666,13 +678,13 @@ void question_boardplayer3(){
 void question_boardplayer4(){
       int sw = 0, number=0, type=1, sw_setting=0, n=1;
      char  beatnumber4, verticalstick, horizontalstick, setting_direction=12;
-     char units_digit_column4, tens_digit_column4, units_digit_size_board, tens_digit_size_board;
+     char units_digit_row4, tens_digit_row4, units_digit_size_board, tens_digit_size_board;
      setTextColor (7,0); gotoxy(2,49); printf("Q U O R I D O R   SETTING!");
      setTextColor (5,0); frame(3, 32, 56, 24);
      question_frame(4, 54, 12); gotoxy(5, 57); printf("PLAYER 4");
      setTextColor (7,0); question_frame(8, 45, 30); gotoxy(9, 47); printf("What is your name? ");
      question_frame(12, 35, 50); gotoxy(13, 37); printf("Enter your beat number(beat1= %c ; beat2= %c ): ", beat4_1, beat4_2);
-     question_frame(16, 35, 50); gotoxy(17, 37); printf("Enter the column of your PLAYER(like 01 / 12): ");
+     question_frame(16, 35, 50); gotoxy(17, 37); printf("Enter the row of your PLAYER(like 01 / 12): ");
      question_frame(20, 39, 43); gotoxy(21, 41); printf("Enter your number of vertical sticks: ");
      question_frame(24, 39, 43); gotoxy(25, 41); printf("Enter your number of horizontal sticks: ");
      question_frame(29, 56, 8); gotoxy(30, 59); printf("EXIT");
@@ -696,7 +708,7 @@ void question_boardplayer4(){
                 printf("Q U O R I D O R   SETTING!");
                 setTextColor (5,0); question_frame(4, 54, 12); gotoxy(5, 57); printf("PLAYER 4");
                 setTextColor (7,0); question_frame(12, 35, 50); gotoxy(13, 37); printf("Enter your beat number(beat1= %c ; beat2= %c ): ", beat4_1, beat4_2);
-                question_frame(16, 35, 50); gotoxy(17, 37); printf("Enter the column of your PLAYER(like 01 / 12): ");
+                question_frame(16, 35, 50); gotoxy(17, 37); printf("Enter the row of your PLAYER(like 01 / 12): ");
                question_frame(20, 39, 43); gotoxy(21, 41); printf("Enter your number of vertical sticks: ");
                question_frame(24, 39, 43); gotoxy(25, 41); printf("Enter your number of horizontal sticks: ");
                question_frame(29, 56, 8); gotoxy(30, 59); printf("EXIT");
@@ -710,7 +722,7 @@ void question_boardplayer4(){
                 printf("Q U O R I D O R   SETTING!");
                 setTextColor (5,0); question_frame(4, 54, 12); gotoxy(5, 57); printf("PLAYER 4");
                 setTextColor (7,0); question_frame(8, 45, 30); gotoxy(9, 47); printf("What is your name? ");
-                question_frame(16, 35, 50); gotoxy(17, 37); printf("Enter the column of your PLAYER(like 01 / 12): ");
+                question_frame(16, 35, 50); gotoxy(17, 37); printf("Enter the row of your PLAYER(like 01 / 12): ");
                 question_frame(20, 39, 43); gotoxy(21, 41); printf("Enter your number of vertical sticks: ");
                 question_frame(24, 39, 43); gotoxy(25, 41); printf("Enter your number of horizontal sticks: ");
                 question_frame(29, 56, 8); gotoxy(30, 59); printf("EXIT");
@@ -729,7 +741,7 @@ void question_boardplayer4(){
                 question_frame(24, 39, 43); gotoxy(25, 41); printf("Enter your number of horizontal sticks: ");
                 question_frame(29, 56, 8); gotoxy(30, 59); printf("EXIT");
                 setTextColor (6,0);
-                question_frame(16, 35, 50); gotoxy(17, 37); printf("Enter the column of your PLAYER(like 01 / 12): ");
+                question_frame(16, 35, 50); gotoxy(17, 37); printf("Enter the row of your PLAYER(like 01 / 12): ");
                 type =3;
              }
               if(number==4){
@@ -739,7 +751,7 @@ void question_boardplayer4(){
                 setTextColor (5,0); question_frame(4, 54, 12); gotoxy(5, 57); printf("PLAYER 4");
                 setTextColor (7,0); question_frame(8, 45, 30); gotoxy(9, 47); printf("What is your name? ");
                 question_frame(12, 35, 50); gotoxy(13, 37); printf("Enter your beat number(beat1= %c ; beat2= %c ): ", beat4_1, beat4_2);
-                question_frame(16, 35, 50); gotoxy(17, 37); printf("Enter the column of your PLAYER(like 01 / 12): ");
+                question_frame(16, 35, 50); gotoxy(17, 37); printf("Enter the row of your PLAYER(like 01 / 12): ");
                 question_frame(24, 39, 43); gotoxy(25, 41); printf("Enter your number of horizontal sticks: ");
                 question_frame(29, 56, 8); gotoxy(30, 59); printf("EXIT");
                 setTextColor (2,0);
@@ -753,7 +765,7 @@ void question_boardplayer4(){
                 setTextColor (5,0); question_frame(4, 54, 12); gotoxy(5, 57); printf("PLAYER 4");
                 setTextColor (7,0); question_frame(8, 45, 30); gotoxy(9, 47); printf("What is your name? ");
                 question_frame(12, 35, 50); gotoxy(13, 37); printf("Enter your beat number(beat1= %c ; beat2= %c ): ", beat4_1, beat4_2);
-                question_frame(16, 35, 50); gotoxy(17, 37); printf("Enter the column of your PLAYER(like 01 / 12): ");
+                question_frame(16, 35, 50); gotoxy(17, 37); printf("Enter the row of your PLAYER(like 01 / 12): ");
                 question_frame(20, 39, 43); gotoxy(21, 41); printf("Enter your number of vertical sticks: ");
                 question_frame(29, 56, 8); gotoxy(30, 59); printf("EXIT");
                 setTextColor (1,0);
@@ -767,7 +779,7 @@ void question_boardplayer4(){
                 setTextColor (5,0); question_frame(4, 54, 12); gotoxy(5, 57); printf("PLAYER 4");
                 setTextColor (7,0); question_frame(8, 45, 30); gotoxy(9, 47); printf("What is your name? ");
                 question_frame(12, 35, 50); gotoxy(13, 37); printf("Enter your beat number(beat1= %c ; beat2= %c ): ", beat4_1, beat4_2);
-                question_frame(16, 35, 50); gotoxy(17, 37); printf("Enter the column of your PLAYER(like 01 / 12): ");
+                question_frame(16, 35, 50); gotoxy(17, 37); printf("Enter the row of your PLAYER(like 01 / 12): ");
                 question_frame(20, 39, 43); gotoxy(21, 41); printf("Enter your number of vertical sticks: ");
                 question_frame(24, 39, 43); gotoxy(25, 41); printf("Enter your number of horizontal sticks: ");
                 setTextColor (5,0);
@@ -776,13 +788,13 @@ void question_boardplayer4(){
                 number =0;
                }
      }
-      if(type==1){
+      if(type==1){//getting name player
         gotoxy(9, 65);
         printf(" ");
         setTextColor (11,0);
         gets(name_player_4);
       }
-     if(type==2){
+     if(type==2){//getting and checking beat
         gotoxy(13, 83);
         printf(" ");
         setTextColor (4,0);
@@ -798,7 +810,7 @@ void question_boardplayer4(){
           else beat4 = beat4_2;
           getch();
         }
-    if(type == 3){
+    if(type == 3){//getting row and comparing with size_board
              setTextColor (6,0);
              units_digit_size_board=size_board%10+'0';
              if(size_board >= 10)
@@ -807,36 +819,38 @@ void question_boardplayer4(){
              }
              else tens_digit_size_board = '0';
              while(sw != 1){
-                   tens_digit_column4 = getch();
-                   units_digit_column4 = getch();
-                   while((tens_digit_column4 != '0' && tens_digit_column4 != '1') || (units_digit_column4 < '0' || units_digit_column4 > '9')){
+                   tens_digit_row4 = getch();
+                   units_digit_row4 = getch();
+                   while((tens_digit_row4 != '0' && tens_digit_row4 != '1') || (units_digit_row4 < '0' || units_digit_row4 > '9')){
                      beep(500,100);
-                     tens_digit_column4 = getch();
-                     units_digit_column4 = getch();
+                     tens_digit_row4 = getch();
+                     units_digit_row4 = getch();
                    }
-                    if(tens_digit_column4 == '0' && tens_digit_size_board == '0'){
-                      if(units_digit_column4 > units_digit_size_board) beep(500,100);
+                    if(tens_digit_row4 == '0' && tens_digit_size_board == '0'){
+                      if(units_digit_row4 > units_digit_size_board) beep(500,100);
                       else sw=1;
                    }
-                   else  if(tens_digit_column4 == '0' && tens_digit_size_board == '1')  sw = 1;
-                   else if(tens_digit_column4 == tens_digit_size_board){
-                      if(units_digit_column4 > units_digit_size_board) beep(500,100);
+                   else  if(tens_digit_row4 == '0' && tens_digit_size_board == '1')  sw = 1;
+                   else if(tens_digit_row4 == tens_digit_size_board){
+                      if(units_digit_row4 > units_digit_size_board) beep(500,100);
                       else sw = 1;
                   }
                   else beep(500,100);
                   if(sw == 1){
                     gotoxy(17, 83);
                     printf(" ");
-                    printf("%c%c", tens_digit_column4, units_digit_column4);
+                    printf("%c%c", tens_digit_row4, units_digit_row4);
                   }
              }
-             tens_digit_column4 -= '0';
-             units_digit_column4 -= '0';
-             column4 = tens_digit_column4*10+units_digit_column4 ;
-             column4=column4*8-5;//Changing the user's input number to the desired value
+             tens_digit_row4 -= '0';
+             units_digit_row4 -= '0';
+             row4 = tens_digit_row4*10+units_digit_row4 ;
+             row4=row4*4-2;//Changing the user's input number to the desired value************************
+             primaryrow4=row4;
+             Sw_change4=0;
              getch();
         }
-       if(type == 4){
+       if(type == 4){//getting and checking vertical sticks
             setTextColor (2,0);
             verticalstick=getch();
             while(verticalstick>'9' || verticalstick<'1'){//check the number of verticalstick, It should not be more than 9
@@ -847,9 +861,10 @@ void question_boardplayer4(){
             gotoxy(21, 79);
             printf(" ");
             printf("%d", verticalsticks4);
+            primaryverticalsticks4=verticalsticks4;
             getch();
        }
-      if(type == 5){
+      if(type == 5){//getting and checking horizontal sticks
           setTextColor (1,0);
           horizontalstick=getch();
          while(horizontalstick>'9' || horizontalstick<'1'){//check the number of horizontalstick, It should not be more than 9
@@ -860,9 +875,10 @@ void question_boardplayer4(){
          gotoxy(25, 80);
          printf(" ");
          printf("%d", horizontalsticks4);
+         primaryhorizontalsticks4=horizontalsticks4;
          getch();
       }
-     if(type == 6){
+     if(type == 6){//go to the first page setting
         system("cls");
         setting_player();
         sw_setting = 1;
