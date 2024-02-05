@@ -64,18 +64,21 @@ void sizeboard(){
            }
         }
         if(type==1){
-            if(size_board>2) size_board--;
+            if(size_board>3) size_board--;
             if(size_board<10) gotoxy(15,58); printf(" ");
             setTextColor (7,0); setting_shape(13, 52, 9); setTextColor (4,0); gotoxy(15,57); printf("%d", size_board);
         }
        if(type==2){
-            if(size_board<14) size_board++;
+            if(size_board<10) size_board++;
             setTextColor (7,0); setting_shape(13, 52, 9); setTextColor (4,0); gotoxy(15,57); printf("%d", size_board);
         }
        if(type==3){
             TotalColumn=8*size_board-1;
             TotalRows=4*size_board+1;
             row1=size_board*4-2;
+            primaryrow1=row1;
+            column4=size_board*8-5;
+            primarycolumn4=column4;
             sw_setting=1;
             system("cls");
             setting_player();
@@ -156,15 +159,18 @@ void Design_color_screen()//Choice of screen color by players
         }
         if(type==1){
             system ("COLOR F0") ;
-            colorscreen =15 ;
+            color =15 ;
+            colorscreen=color;
         }
         if(type==2){
             system ("COLOR B0") ;
-            colorscreen = 11 ;
+            color = 11 ;
+            colorscreen=color;
         }
         if(type==3){
             system ("COLOR E0") ;
-            colorscreen = 14 ;
+            color = 14 ;
+            colorscreen=color;
         }
         if(type==4){
             system("cls");
@@ -172,34 +178,6 @@ void Design_color_screen()//Choice of screen color by players
             sw_setting = 1;
         }
     }while(sw_setting==0);
-  /*  while ( getch() == 13 )
-        {
-         beep (500,100) ;
-         if (n!=1){
-            if(getch() == 13)
-         {
-            system ("COLOR F0") ;
-            colorscreen =15 ;
-         }
-         else if ( getch() != '\n' ) break ;
-         }
-         beep (500,100) ;
-         if ( getch() == 13 )
-         {
-            system ("COLOR B0") ;
-            colorscreen = 11 ;
-         }
-         else if ( getch() != '\n' ) break ;
-         beep (500,100) ;
-         if ( getch() == 13 )
-         {
-            system ("COLOR E0") ;
-            colorscreen = 14 ;
-         }
-         else if ( getch() != '\n' ) break ;
-         beep (500,100) ;
-         n++;
-    }
 }
 
 void loading(){
@@ -226,7 +204,7 @@ gotoxy(x, y+1);
      }
 
     printslowly("COMPLETE !!! ",16,64);
-    sleep(50);*/
+    sleep(50);
 }
 
 int logo(int TotalRows,int TotalColumn){
@@ -328,9 +306,15 @@ void printwon(char name[])
     int n ;
     system("cls");
     setTextColor (10, 15) ;
+    if(strcmp(name, name_player_1)==0){
+         for (n=0; n<=179; n++){
+               printf (" Congratulations, %s won ! ", name);
+               sleep (30) ;
+         }
+    }
     for (n=0; n<=179; n++)
     {
-        if(typeplayer2==0){
+        if(typeplayer2==0){//if it is not computer
            printf (" Congratulations, %s won ! ", name);
            sleep (30) ;
         }else{
